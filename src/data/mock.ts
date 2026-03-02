@@ -1,4 +1,11 @@
-export const stats = [
+export type Trend = 'up' | 'down';
+
+export const stats: Array<{
+  label: string;
+  value: string;
+  delta: string;
+  trend: Trend;
+}> = [
   {
     label: 'Total Sales',
     value: '$128,430',
