@@ -1,11 +1,12 @@
 import { NavLink } from 'react-router-dom';
-import { LayoutGrid, LineChart, Settings, Users } from 'lucide-react';
+import { ClipboardList, LayoutGrid, LineChart, Settings, Users } from 'lucide-react';
 import clsx from 'clsx';
 
 const navItems = [
   { label: 'Dashboard', to: '/dashboard', icon: LayoutGrid },
   { label: 'Analytics', to: '/analytics', icon: LineChart },
   { label: 'Users', to: '/users', icon: Users },
+  { label: 'Audit Logs', to: '/audit-logs', icon: ClipboardList },
   { label: 'Settings', to: '/settings', icon: Settings },
 ];
 
