@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import AppLayout from './components/layout/AppLayout';
 import DashboardPage from './pages/DashboardPage';
+import NotificationsPage from './pages/NotificationsPage';
 import PlaceholderPage from './pages/PlaceholderPage';
 
 const App = () => {
@@ -11,6 +12,7 @@ const App = () => {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/analytics" element={<PlaceholderPage title="Analytics" />} />
         <Route path="/users" element={<PlaceholderPage title="Users" />} />
+        <Route path="/notifications" element={<NotificationsPage />} />
         <Route path="/settings" element={<PlaceholderPage title="Settings" />} />
       </Route>
       <Route path="*" element={<Navigate to="/dashboard" replace />} />

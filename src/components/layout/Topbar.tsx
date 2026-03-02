@@ -1,7 +1,8 @@
 import { Bell, LogOut, Moon, Search, Settings, Sun, User } from 'lucide-react';
 import { useState } from 'react';
-import { notifications } from '../../data/mock';
+import { useNavigate } from 'react-router-dom';
 import { useDarkMode } from '../../hooks/useDarkMode';
+import { useNotifications } from '../../hooks/useNotifications';
 import clsx from 'clsx';
 
 interface TopbarProps {
@@ -9,8 +10,10 @@ interface TopbarProps {
 }
 
 const Topbar = ({ onMenuClick }: TopbarProps) => {
+  const navigate = useNavigate();
   const { mode, toggle } = useDarkMode();
-  const [showNotifications, setShowNotifications] = useState(false);
+  const notifications = useNotifications();
+  const unreadCount = notifications.filter((item) => !item.read).length;
   const [showUserMenu, setShowUserMenu] = useState(false);
 
   return (
@@ -43,26 +46,15 @@ const Topbar = ({ onMenuClick }: TopbarProps) => {
 
         <div className="relative">
           <button
-            onClick={() => setShowNotifications((prev) => !prev)}
+            onClick={() => navigate('/notifications')}
             className="relative inline-flex h-10 w-10 items-center justify-center rounded-xl border border-base-200 dark:border-base-700"
             aria-label="Notifications"
           >
             <Bell size={18} />
-            <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-danger" />
+            {unreadCount > 0 && (
+              <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-danger" />
+            )}
           </button>
-          {showNotifications && (
-            <div className="absolute right-0 mt-2 w-64 rounded-xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 shadow-card p-3 z-20">
-              <p className="text-xs font-semibold text-base-500 uppercase tracking-wide">Notifications</p>
-              <div className="mt-3 space-y-3">
-                {notifications.map((item) => (
-                  <div key={item.id} className="text-sm">
-                    <p className="text-base-700 dark:text-base-200">{item.title}</p>
-                    <p className="text-xs text-base-400">{item.time}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
 
         <div className="relative">
