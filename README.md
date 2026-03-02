@@ -65,6 +65,10 @@ npm run preview
 - 替换或扩展 `components/dashboard` 为真实业务组件
 - 引入状态管理（Zustand / Redux）与权限控制
 
+## 🧾 Changelog / Features
+
+- User management CRUD (search, add/edit modal, delete confirm, pagination)
+
 ## 📸 截图
 
 > `docs/screenshot.png` 为占位，可替换为真实截图。
