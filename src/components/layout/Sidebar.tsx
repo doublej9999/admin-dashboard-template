@@ -1,11 +1,12 @@
 import { NavLink } from 'react-router-dom';
-import { LayoutGrid, LineChart, Settings, Users } from 'lucide-react';
+import { FolderOpen, LayoutGrid, LineChart, Settings, Users } from 'lucide-react';
 import clsx from 'clsx';
 
 const navItems = [
   { label: 'Dashboard', to: '/dashboard', icon: LayoutGrid },
   { label: 'Analytics', to: '/analytics', icon: LineChart },
   { label: 'Users', to: '/users', icon: Users },
+  { label: 'Files', to: '/files', icon: FolderOpen },
   { label: 'Settings', to: '/settings', icon: Settings },
 ];
 
