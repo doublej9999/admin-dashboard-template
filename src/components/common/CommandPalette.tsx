@@ -108,7 +108,7 @@ const CommandPalette = ({ open, onClose }: CommandPaletteProps) => {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/40 px-4 pt-24 sm:pt-28">
+    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/40 px-4 pt-24 sm:pt-28" role="dialog" aria-modal="true" aria-label={t('common.commandPalette')}>
       <div className="w-full max-w-2xl card-shell border border-base-200 dark:border-base-700 bg-white dark:bg-base-900 shadow-card density-pad">
         <div className="border-b border-base-200 dark:border-base-700 px-5 py-4">
           <input
@@ -117,6 +117,7 @@ const CommandPalette = ({ open, onClose }: CommandPaletteProps) => {
             onChange={(event) => setQuery(event.target.value)}
             onKeyDown={handleInputKeyDown}
             placeholder={t('common.searchPlaceholder')}
+            aria-label={t('common.searchPlaceholder')}
             className="w-full rounded-xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-800 px-4 py-2 text-sm text-base-700 dark:text-base-100 outline-none focus:border-brand-500"
           />
         </div>
@@ -138,7 +139,7 @@ const CommandPalette = ({ open, onClose }: CommandPaletteProps) => {
                   )}
                 >
                   <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-base-100 dark:bg-base-800">
-                    <Icon size={18} />
+                    <Icon size={18} aria-hidden="true" />
                   </span>
                   <span className="flex-1">
                     <span className="font-medium">{item.label}</span>
