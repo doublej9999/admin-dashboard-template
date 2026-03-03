@@ -2,12 +2,14 @@ import { useMemo, useState } from 'react';
 import clsx from 'clsx';
 import { mockAuditLogs } from '../data/auditLogs';
 import { usePagination } from '../hooks/usePagination';
+import { useI18n } from '../contexts/I18nContext';
 
 const AuditLogsPage = () => {
   const [user, setUser] = useState('');
   const [action, setAction] = useState('');
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
+  const { t } = useI18n();
 
   const filtered = useMemo(() => {
     return mockAuditLogs.filter((log) => {
@@ -25,21 +27,21 @@ const AuditLogsPage = () => {
   return (
     <div className="space-y-6">
       <div>
-        <p className="text-sm text-base-500">Security</p>
-        <h1 className="text-2xl font-semibold text-base-900 dark:text-base-100">Audit Logs</h1>
+        <p className="text-sm text-base-500">{t('audit.security')}</p>
+        <h1 className="text-2xl font-semibold text-base-900 dark:text-base-100">{t('audit.title')}</h1>
       </div>
 
       <div className="rounded-2xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-5 shadow-card">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
           <input
             className="rounded-xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-900 px-4 py-2 text-sm"
-            placeholder="Filter by user"
+            placeholder={t('audit.filterUser')}
             value={user}
             onChange={(event) => setUser(event.target.value)}
           />
           <input
             className="rounded-xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-900 px-4 py-2 text-sm"
-            placeholder="Filter by action"
+            placeholder={t('audit.filterAction')}
             value={action}
             onChange={(event) => setAction(event.target.value)}
           />
@@ -63,11 +65,11 @@ const AuditLogsPage = () => {
           <table className="w-full text-left text-sm">
             <thead>
               <tr className="text-xs uppercase text-base-400 border-b border-base-200 dark:border-base-700">
-                <th className="py-3">Time</th>
-                <th className="py-3">User</th>
-                <th className="py-3">Action</th>
-                <th className="py-3">Target</th>
-                <th className="py-3">Result</th>
+                <th className="py-3">{t('audit.time')}</th>
+                <th className="py-3">{t('audit.user')}</th>
+                <th className="py-3">{t('audit.action')}</th>
+                <th className="py-3">{t('audit.target')}</th>
+                <th className="py-3">{t('audit.result')}</th>
               </tr>
             </thead>
             <tbody>
@@ -95,7 +97,7 @@ const AuditLogsPage = () => {
           </table>
         </div>
         <div className="mt-4 flex items-center justify-between">
-          <p className="text-xs text-base-400">Page {page} of {totalPages}</p>
+          <p className="text-xs text-base-400">{t('audit.page')} {page} / {totalPages}</p>
           <div className="flex items-center gap-2">
             {Array.from({ length: totalPages }).map((_, index) => {
               const pageNumber = index + 1;

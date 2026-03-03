@@ -14,6 +14,7 @@ import {
 import clsx from 'clsx';
 import { useNavigate } from 'react-router-dom';
 import { useDarkMode } from '../../hooks/useDarkMode';
+import { useI18n } from '../../contexts/I18nContext';
 
 export interface CommandPaletteProps {
   open: boolean;
@@ -23,6 +24,7 @@ export interface CommandPaletteProps {
 const CommandPalette = ({ open, onClose }: CommandPaletteProps) => {
   const navigate = useNavigate();
   const { mode, toggle } = useDarkMode();
+  const { locale, setLocale, t } = useI18n();
   const inputRef = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState('');
   const [activeIndex, setActiveIndex] = useState(0);
@@ -51,22 +53,28 @@ const CommandPalette = ({ open, onClose }: CommandPaletteProps) => {
 
   const items = useMemo(
     () => [
-      { label: 'Dashboard', description: 'Overview and KPIs', icon: LayoutGrid, action: () => navigate('/dashboard') },
-      { label: 'Analytics', description: 'Charts and insights', icon: LineChart, action: () => navigate('/analytics') },
-      { label: 'Users', description: 'User management', icon: Users, action: () => navigate('/users') },
-      { label: 'Roles', description: 'Roles & permissions', icon: Shield, action: () => navigate('/roles') },
-      { label: 'Notifications', description: 'Alerts and updates', icon: Bell, action: () => navigate('/notifications') },
-      { label: 'Files', description: 'File manager', icon: FolderOpen, action: () => navigate('/files') },
-      { label: 'Audit Logs', description: 'Recent activity', icon: ClipboardList, action: () => navigate('/audit-logs') },
-      { label: 'Settings', description: 'Workspace settings', icon: Settings, action: () => navigate('/settings') },
+      { label: t('nav.dashboard'), description: t('dashboard.overview'), icon: LayoutGrid, action: () => navigate('/dashboard') },
+      { label: t('nav.analytics'), description: 'Charts & KPIs', icon: LineChart, action: () => navigate('/analytics') },
+      { label: t('nav.users'), description: t('users.title'), icon: Users, action: () => navigate('/users') },
+      { label: t('nav.roles'), description: t('roles.title'), icon: Shield, action: () => navigate('/roles') },
+      { label: t('nav.notifications'), description: t('notifications.title'), icon: Bell, action: () => navigate('/notifications') },
+      { label: t('nav.files'), description: t('files.title'), icon: FolderOpen, action: () => navigate('/files') },
+      { label: t('nav.auditLogs'), description: t('audit.title'), icon: ClipboardList, action: () => navigate('/audit-logs') },
+      { label: t('nav.settings'), description: t('settings.title'), icon: Settings, action: () => navigate('/settings') },
       {
-        label: mode === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode',
-        description: 'Toggle appearance',
+        label: locale === 'zh' ? t('common.switchToEnglish') : t('common.switchToChinese'),
+        description: t('common.language'),
+        icon: locale === 'zh' ? Sun : Moon,
+        action: () => setLocale(locale === 'zh' ? 'en' : 'zh'),
+      },
+      {
+        label: mode === 'dark' ? t('common.switchToEnglish') : t('common.switchToChinese'),
+        description: t('common.toggleDark'),
         icon: mode === 'dark' ? Sun : Moon,
         action: () => toggle(),
       },
     ],
-    [navigate, mode, toggle]
+    [navigate, mode, toggle, t, setLocale, locale]
   );
 
   const filtered = useMemo(() => {
@@ -108,13 +116,13 @@ const CommandPalette = ({ open, onClose }: CommandPaletteProps) => {
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             onKeyDown={handleInputKeyDown}
-            placeholder="Search or type a command"
+            placeholder={t('common.searchPlaceholder')}
             className="w-full rounded-xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-800 px-4 py-2 text-sm text-base-700 dark:text-base-100 outline-none focus:border-brand-500"
           />
         </div>
         <div className="max-h-[50vh] overflow-y-auto p-3">
           {filtered.length === 0 ? (
-            <div className="px-4 py-6 text-sm text-base-500">No commands found.</div>
+            <div className="px-4 py-6 text-sm text-base-500">{t('common.noCommands')}</div>
           ) : (
             filtered.map((item, index) => {
               const Icon = item.icon;
