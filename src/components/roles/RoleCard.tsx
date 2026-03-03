@@ -9,7 +9,7 @@ interface RoleCardProps {
 
 const RoleCard = ({ role, onToggle }: RoleCardProps) => {
   return (
-    <div className="rounded-2xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-6 shadow-card">
+    <div className="card-shell border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-6 density-pad shadow-card density-pad">
       <div className="mb-4">
         <p className="text-sm text-base-500">Role</p>
         <h3 className="text-lg font-semibold text-base-900 dark:text-base-100">{role.name}</h3>

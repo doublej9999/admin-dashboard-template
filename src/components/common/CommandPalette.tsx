@@ -109,7 +109,7 @@ const CommandPalette = ({ open, onClose }: CommandPaletteProps) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/40 px-4 pt-24 sm:pt-28">
-      <div className="w-full max-w-2xl rounded-2xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-900 shadow-card">
+      <div className="w-full max-w-2xl card-shell border border-base-200 dark:border-base-700 bg-white dark:bg-base-900 shadow-card density-pad">
         <div className="border-b border-base-200 dark:border-base-700 px-5 py-4">
           <input
             ref={inputRef}
@@ -120,7 +120,7 @@ const CommandPalette = ({ open, onClose }: CommandPaletteProps) => {
             className="w-full rounded-xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-800 px-4 py-2 text-sm text-base-700 dark:text-base-100 outline-none focus:border-brand-500"
           />
         </div>
-        <div className="max-h-[50vh] overflow-y-auto p-3">
+        <div className="max-h-[50vh] overflow-y-auto p-3 density-pad">
           {filtered.length === 0 ? (
             <div className="px-4 py-6 text-sm text-base-500">{t('common.noCommands')}</div>
           ) : (
@@ -131,7 +131,7 @@ const CommandPalette = ({ open, onClose }: CommandPaletteProps) => {
                   key={item.label}
                   onClick={() => handleRun(index)}
                   className={clsx(
-                    'flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left text-sm transition',
+                    'flex w-full items-center gap-3 density-pad rounded-xl px-4 py-3 text-left text-sm transition',
                     index === activeIndex
                       ? 'bg-brand-500/10 text-brand-600 dark:text-brand-300'
                       : 'text-base-600 hover:bg-base-100 dark:hover:bg-base-800'

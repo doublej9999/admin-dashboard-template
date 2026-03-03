@@ -121,12 +121,12 @@ const KanbanPage = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-4 density-pad md:flex-row md:items-center md:justify-between">
         <div>
           <p className="text-sm text-base-500">{t('kanban.section')}</p>
           <h1 className="text-2xl font-semibold text-base-900 dark:text-base-100">{t('kanban.title')}</h1>
         </div>
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3 density-pad">
           <div className="rounded-xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 px-4 py-2 text-sm">
             {t('kanban.summaryTotal', { count: summary.total })}
           </div>
@@ -139,13 +139,13 @@ const KanbanPage = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 density-pad lg:grid-cols-4">
         {columns.map((column) => (
           <div
             key={column.id}
             onDragOver={(event) => event.preventDefault()}
             onDrop={() => handleDrop(column.id)}
-            className="rounded-2xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-4 shadow-card"
+            className="card-shell border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-4 density-pad shadow-card density-pad"
           >
             <div className={clsx('rounded-xl px-3 py-2 text-sm font-semibold', column.color)}>
               {t(`kanban.column.${column.id}` as const)}
@@ -156,14 +156,14 @@ const KanbanPage = () => {
                   key={card.id}
                   draggable
                   onDragStart={() => handleDragStart(card, column.id)}
-                  className="rounded-2xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-900 p-4 shadow-sm cursor-grab active:cursor-grabbing"
+                  className="card-shell border border-base-200 dark:border-base-700 bg-white dark:bg-base-900 p-4 density-pad shadow-sm cursor-grab active:cursor-grabbing"
                 >
                   <div className="flex items-center justify-between">
                     <p className="text-sm font-semibold text-base-900 dark:text-base-100">{card.title}</p>
                     <span className="text-xs text-base-400">{card.id}</span>
                   </div>
                   <p className="mt-2 text-xs text-base-500">{card.description}</p>
-                  <div className="mt-3 flex flex-wrap items-center gap-2">
+                  <div className="mt-3 flex flex-wrap items-center gap-2 density-pad">
                     {card.tags.map((tag) => (
                       <span
                         key={tag}

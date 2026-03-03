@@ -28,15 +28,15 @@ const DashboardPage = () => {
         <h1 className="text-2xl font-semibold text-base-900 dark:text-base-100">{t('dashboard.overview')}</h1>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 density-pad md:grid-cols-2 xl:grid-cols-4">
         {stats.map((stat, index) => (
           <StatCard key={stat.label} {...stat} label={statLabels[index]} icon={icons[index]} />
         ))}
       </div>
 
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-[2fr_1fr]">
+      <div className="grid grid-cols-1 gap-6 density-pad xl:grid-cols-[2fr_1fr]">
         <SalesLineChart />
-        <div className="rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 text-white p-6 shadow-card">
+        <div className="card-shell bg-gradient-to-br from-brand-500 to-brand-700 text-white p-6 density-pad shadow-card density-pad">
           <p className="text-sm text-white/80">{t('dashboard.teamPerformance')}</p>
           <h3 className="mt-2 text-2xl font-semibold">{t('dashboard.growth')}</h3>
           <p className="mt-4 text-sm text-white/70">

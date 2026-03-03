@@ -74,8 +74,8 @@ const OrdersTable = () => {
   ];
 
   return (
-    <div className="rounded-2xl bg-white dark:bg-base-800 border border-base-200 dark:border-base-700 p-5 shadow-card">
-      <div className="mb-4 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+    <div className="card-shell bg-white dark:bg-base-800 border border-base-200 dark:border-base-700 p-5 density-pad shadow-card density-pad">
+      <div className="mb-4 flex flex-col gap-4 density-pad lg:flex-row lg:items-center lg:justify-between">
         <div>
           <p className="text-sm text-base-500">{t('orders.title')}</p>
           <p className="text-lg font-semibold text-base-900 dark:text-base-100">{t('orders.subtitle')}</p>
@@ -85,7 +85,7 @@ const OrdersTable = () => {
         </div>
       </div>
 
-      <div className="mb-4 grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-[1.2fr_1fr_1fr_auto]">
+      <div className="mb-4 grid grid-cols-1 gap-3 density-pad md:grid-cols-2 xl:grid-cols-[1.2fr_1fr_1fr_auto]">
         <input
           className="rounded-xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-900 px-4 py-2 text-sm"
           placeholder={t('orders.searchPlaceholder')}
@@ -102,7 +102,7 @@ const OrdersTable = () => {
           <option value="Pending">{t('orders.status.Pending')}</option>
           <option value="Refunded">{t('orders.status.Refunded')}</option>
         </select>
-        <div className="flex flex-col gap-2 sm:flex-row">
+        <div className="flex flex-col gap-2 density-pad sm:flex-row">
           <input
             type="date"
             className="flex-1 rounded-xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-900 px-4 py-2 text-sm"

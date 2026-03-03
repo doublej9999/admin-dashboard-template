@@ -38,7 +38,7 @@ const RolesPage = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-3 density-pad md:flex-row md:items-center md:justify-between">
         <div>
           <p className="text-sm text-base-500">{t('audit.security')}</p>
           <h1 className="text-2xl font-semibold text-base-900 dark:text-base-100">{t('roles.title')}</h1>
@@ -59,9 +59,9 @@ const RolesPage = () => {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-6 shadow-card">
+      <div className="card-shell border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-6 density-pad shadow-card density-pad">
         <p className="text-sm text-base-500">{t('roles.permissionPreview')}</p>
-        <div className="mt-3 flex flex-wrap items-center gap-3">
+        <div className="mt-3 flex flex-wrap items-center gap-3 density-pad">
           <button
             disabled={!can('users:create')}
             className={`rounded-xl px-4 py-2 text-sm font-semibold ${
@@ -76,7 +76,7 @@ const RolesPage = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 density-pad lg:grid-cols-3">
         {roles.map((role) => (
           <RoleCard key={role.id} role={role} onToggle={handleToggle} />
         ))}

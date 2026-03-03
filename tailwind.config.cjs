@@ -26,8 +26,8 @@ module.exports = {
           200: '#bfdbfe',
           300: '#93c5fd',
           400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
+          500: 'var(--color-brand-500)',
+          600: 'var(--color-brand-600)',
           700: '#1d4ed8',
           800: '#1e40af',
           900: '#1e3a8a',
@@ -35,6 +35,9 @@ module.exports = {
         success: '#10b981',
         danger: '#ef4444',
         warning: '#f59e0b',
+      },
+      borderRadius: {
+        card: 'var(--radius-card)',
       },
       boxShadow: {
         card: '0 1px 2px rgba(15, 23, 42, 0.08), 0 6px 12px rgba(15, 23, 42, 0.06)',

@@ -53,13 +53,13 @@ const UsersTable = () => {
   };
 
   return (
-    <div className="rounded-2xl bg-white dark:bg-base-800 border border-base-200 dark:border-base-700 p-6 shadow-card">
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+    <div className="card-shell bg-white dark:bg-base-800 border border-base-200 dark:border-base-700 p-6 density-pad shadow-card density-pad">
+      <div className="flex flex-col gap-4 density-pad md:flex-row md:items-center md:justify-between">
         <div>
           <h2 className="text-lg font-semibold text-base-900 dark:text-base-100">Users</h2>
           <p className="text-sm text-base-500">Manage your team members.</p>
         </div>
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+        <div className="flex flex-col gap-3 density-pad sm:flex-row sm:items-center">
           <input
             placeholder="Search name or email"
             className="rounded-xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-900 px-4 py-2 text-sm"
@@ -101,7 +101,7 @@ const UsersTable = () => {
                   </span>
                 </td>
                 <td className="py-3 text-right">
-                  <div className="flex items-center justify-end gap-2">
+                  <div className="flex items-center justify-end gap-2 density-pad">
                     <button
                       onClick={() => handleEdit(user)}
                       className="rounded-lg border border-base-200 dark:border-base-700 px-3 py-1 text-xs"
@@ -124,7 +124,7 @@ const UsersTable = () => {
 
       <div className="mt-4 flex items-center justify-between">
         <p className="text-xs text-base-400">Page {page} of {totalPages}</p>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 density-pad">
           {Array.from({ length: totalPages }).map((_, index) => {
             const pageNumber = index + 1;
             return (
