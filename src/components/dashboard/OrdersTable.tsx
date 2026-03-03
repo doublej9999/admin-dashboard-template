@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { useMemo, useState } from 'react';
 import { orders } from '../../data/mock';
 import DataTable, { type DataTableColumn } from '../common/DataTable';
-import { useI18n } from '../../contexts/I18nContext';
+import { useI18n } from '../../contexts/useI18n';
 import { exportToCsv } from '../../utils/csv';
 
 const OrdersTable = () => {

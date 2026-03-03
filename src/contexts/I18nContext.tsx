@@ -1,6 +1,7 @@
-import { createContext, useCallback, useContext, useMemo, useState } from 'react';
+import { createContext, useCallback, useMemo, useState } from 'react';
 import { getSettings, saveSettings } from '../utils/settings';
 import { t as translate, type Locale, translations } from '../i18n/translations';
+import { mapLanguageToLocale, mapLocaleToLanguage } from './i18nUtils';
 
 interface I18nContextValue {
   locale: Locale;
@@ -8,14 +9,7 @@ interface I18nContextValue {
   t: (key: keyof typeof translations, params?: Record<string, string | number>) => string;
 }
 
-const I18nContext = createContext<I18nContextValue | undefined>(undefined);
-
-export const mapLanguageToLocale = (language: string): Locale => {
-  if (language.startsWith('zh')) return 'zh';
-  return 'en';
-};
-
-export const mapLocaleToLanguage = (locale: Locale): string => (locale === 'zh' ? 'zh-CN' : 'en-US');
+export const I18nContext = createContext<I18nContextValue | undefined>(undefined);
 
 export const I18nProvider = ({ children }: { children: React.ReactNode }) => {
   const stored = getSettings();
@@ -38,7 +32,7 @@ export const I18nProvider = ({ children }: { children: React.ReactNode }) => {
         const base = translate(key, locale);
         if (!params) return base;
         return Object.entries(params).reduce((acc, [paramKey, value]) => {
-          return acc.replace(new RegExp(`\\{${paramKey}\\}`, 'g'), String(value));
+          return acc.replace(new RegExp(`\{${paramKey}\}`, 'g'), String(value));
         }, base);
       },
     }),
@@ -46,12 +40,4 @@ export const I18nProvider = ({ children }: { children: React.ReactNode }) => {
   );
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
-};
-
-export const useI18n = () => {
-  const context = useContext(I18nContext);
-  if (!context) {
-    throw new Error('useI18n must be used within I18nProvider');
-  }
-  return context;
 };

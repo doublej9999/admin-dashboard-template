@@ -1,5 +1,5 @@
 import UsersTable from '../components/users/UsersTable';
-import { useI18n } from '../contexts/I18nContext';
+import { useI18n } from '../contexts/useI18n';
 
 const UsersPage = () => {
   const { t } = useI18n();

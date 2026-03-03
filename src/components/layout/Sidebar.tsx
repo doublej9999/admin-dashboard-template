@@ -15,7 +15,7 @@ import clsx from 'clsx';
 import { hasPermission } from '../../utils/rbac';
 import { menuPermissionMap, type MenuKey } from '../../utils/permissions';
 import { useRole } from '../../hooks/useRole';
-import { useI18n } from '../../contexts/I18nContext';
+import { useI18n } from '../../contexts/useI18n';
 import { translations } from '../../i18n/translations';
 
 const navItems: Array<{ label: string; to: string; icon: typeof LayoutGrid; key: MenuKey }> = [

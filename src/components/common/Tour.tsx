@@ -1,7 +1,10 @@
 import { useState } from 'react';
-import { useI18n } from '../../contexts/I18nContext';
+import { useI18n } from '../../contexts/useI18n';
+import type { translations } from '../../i18n/translations';
 
-const steps = [
+type TranslationKey = keyof typeof translations;
+
+const steps: Array<{ id: string; titleKey: TranslationKey; bodyKey: TranslationKey }> = [
   { id: 'step-1', titleKey: 'tour.step1Title', bodyKey: 'tour.step1Body' },
   { id: 'step-2', titleKey: 'tour.step2Title', bodyKey: 'tour.step2Body' },
   { id: 'step-3', titleKey: 'tour.step3Title', bodyKey: 'tour.step3Body' },
@@ -22,9 +25,9 @@ const Tour = () => {
       <div className="card-shell bg-white dark:bg-base-800 border border-base-200 dark:border-base-700 p-6 shadow-card density-pad w-full max-w-md">
         <div className="text-xs uppercase text-base-400">{t('tour.label')}</div>
         <h3 className="mt-2 text-lg font-semibold text-base-900 dark:text-base-100">
-          {t(step.titleKey as any)}
+          {t(step.titleKey)}
         </h3>
-        <p className="mt-2 text-sm text-base-500">{t(step.bodyKey as any)}</p>
+        <p className="mt-2 text-sm text-base-500">{t(step.bodyKey)}</p>
         <div className="mt-6 flex items-center justify-between">
           <button
             onClick={() => {

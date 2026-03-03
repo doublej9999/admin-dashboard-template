@@ -1,5 +1,5 @@
 import { AlertTriangle } from 'lucide-react';
-import { useI18n } from '../../contexts/I18nContext';
+import { useI18n } from '../../contexts/useI18n';
 
 interface ErrorStateProps {
   title?: string;
