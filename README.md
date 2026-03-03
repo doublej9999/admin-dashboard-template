@@ -67,6 +67,9 @@ npm run preview
 
 ## 🧾 Changelog / Features
 
+- Login page + auth guard (mock login, localStorage token, logout)
+- System settings page (theme toggle, language placeholder, profile settings)
+- User management CRUD (search, add/edit modal, delete confirm, pagination)
 - Roles & permissions (RBAC) with menu filtering and permission preview
 
 ## 📸 截图
