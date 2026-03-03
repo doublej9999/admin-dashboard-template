@@ -52,6 +52,12 @@ npm run build
 npm run preview
 ```
 
+## ✅ CI
+
+- GitHub Actions 会在 PR / main push 时运行：install -> lint -> typecheck -> build
+- Auto-merge 依赖仓库设置：Settings → Pull Requests → 勾选 “Allow auto-merge”
+- 可选建议：开启分支保护（Require status checks: ci, Require linear history）
+
 ## 🌗 暗黑模式
 
 - 通过 Topbar 的切换按钮控制

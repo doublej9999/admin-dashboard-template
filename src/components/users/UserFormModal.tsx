@@ -1,5 +1,5 @@
 import type { UserRecord } from '../../data/users';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface UserFormModalProps {
   open: boolean;
@@ -9,24 +9,24 @@ interface UserFormModalProps {
 }
 
 const UserFormModal = ({ open, initial, onClose, onSubmit }: UserFormModalProps) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [role, setRole] = useState<UserRecord['role']>('Viewer');
-  const [status, setStatus] = useState<UserRecord['status']>('active');
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const roleRef = useRef<HTMLSelectElement>(null);
+  const statusRef = useRef<HTMLSelectElement>(null);
 
   useEffect(() => {
-    if (initial) {
-      setName(initial.name);
-      setEmail(initial.email);
-      setRole(initial.role);
-      setStatus(initial.status);
-    } else {
-      setName('');
-      setEmail('');
-      setRole('Viewer');
-      setStatus('active');
-    }
-  }, [initial]);
+    const next = {
+      name: initial?.name ?? '',
+      email: initial?.email ?? '',
+      role: initial?.role ?? 'Viewer',
+      status: initial?.status ?? 'active',
+    };
+
+    if (nameRef.current) nameRef.current.value = next.name;
+    if (emailRef.current) emailRef.current.value = next.email;
+    if (roleRef.current) roleRef.current.value = next.role;
+    if (statusRef.current) statusRef.current.value = next.status;
+  }, [initial, open]);
 
   if (!open) return null;
 
@@ -43,26 +43,26 @@ const UserFormModal = ({ open, initial, onClose, onSubmit }: UserFormModalProps)
           <div>
             <label className="text-sm text-base-500">Name</label>
             <input
+              ref={nameRef}
               className="mt-2 w-full rounded-xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-900 px-4 py-2 text-sm"
-              value={name}
-              onChange={(event) => setName(event.target.value)}
+              defaultValue={initial?.name ?? ''}
             />
           </div>
           <div>
             <label className="text-sm text-base-500">Email</label>
             <input
+              ref={emailRef}
               className="mt-2 w-full rounded-xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-900 px-4 py-2 text-sm"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
+              defaultValue={initial?.email ?? ''}
             />
           </div>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div>
               <label className="text-sm text-base-500">Role</label>
               <select
+                ref={roleRef}
                 className="mt-2 w-full rounded-xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-900 px-4 py-2 text-sm"
-                value={role}
-                onChange={(event) => setRole(event.target.value as UserRecord['role'])}
+                defaultValue={initial?.role ?? 'Viewer'}
               >
                 <option>Admin</option>
                 <option>Editor</option>
@@ -72,9 +72,9 @@ const UserFormModal = ({ open, initial, onClose, onSubmit }: UserFormModalProps)
             <div>
               <label className="text-sm text-base-500">Status</label>
               <select
+                ref={statusRef}
                 className="mt-2 w-full rounded-xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-900 px-4 py-2 text-sm"
-                value={status}
-                onChange={(event) => setStatus(event.target.value as UserRecord['status'])}
+                defaultValue={initial?.status ?? 'active'}
               >
                 <option value="active">Active</option>
                 <option value="invited">Invited</option>
@@ -91,7 +91,14 @@ const UserFormModal = ({ open, initial, onClose, onSubmit }: UserFormModalProps)
             Cancel
           </button>
           <button
-            onClick={() => onSubmit({ name, email, role, status })}
+            onClick={() =>
+              onSubmit({
+                name: nameRef.current?.value ?? '',
+                email: emailRef.current?.value ?? '',
+                role: (roleRef.current?.value as UserRecord['role']) ?? 'Viewer',
+                status: (statusRef.current?.value as UserRecord['status']) ?? 'active',
+              })
+            }
             className="rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold text-white"
           >
             Save
