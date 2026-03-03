@@ -1,27 +1,29 @@
 import { useEffect, useState } from 'react';
-
-const STORAGE_KEY = 'admin-dashboard-theme';
+import { getSettings, saveSettings } from '../utils/settings';
 
 type ThemeMode = 'light' | 'dark';
 
 export const useDarkMode = () => {
-  const [mode, setMode] = useState<ThemeMode>(() => {
-    const stored = localStorage.getItem(STORAGE_KEY) as ThemeMode | null;
-    if (stored === 'light' || stored === 'dark') return stored;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  });
+  const [mode, setMode] = useState<ThemeMode>(() => getSettings().theme);
 
   useEffect(() => {
-    const root = document.documentElement;
-    if (mode === 'dark') {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
-    localStorage.setItem(STORAGE_KEY, mode);
-  }, [mode]);
+    const sync = () => {
+      const settings = getSettings();
+      setMode(settings.theme);
+    };
+    window.addEventListener('storage', sync);
+    window.addEventListener('settings-change', sync);
+    return () => {
+      window.removeEventListener('storage', sync);
+      window.removeEventListener('settings-change', sync);
+    };
+  }, []);
 
-  const toggle = () => setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  const toggle = () => {
+    const settings = getSettings();
+    const next = settings.theme === 'dark' ? 'light' : 'dark';
+    saveSettings({ ...settings, theme: next });
+  };
 
   return { mode, toggle };
 };
