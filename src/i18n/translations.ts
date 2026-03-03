@@ -168,6 +168,12 @@ export const translations: Dictionary = {
   'org.status.Leave': { en: 'Leave', zh: '休假' },
   'org.edit': { en: 'Edit', zh: '编辑' },
   'org.remove': { en: 'Remove', zh: '移除' },
+  'state.emptyTitle': { en: 'Nothing here yet', zh: '暂无内容' },
+  'state.emptyDescription': { en: 'Once you have data, it will show up here.', zh: '有数据后会显示在这里。' },
+  'state.emptyAction': { en: 'Reset filters', zh: '清除筛选' },
+  'state.errorTitle': { en: 'Something went wrong', zh: '发生错误' },
+  'state.errorDescription': { en: 'Please retry or check back later.', zh: '请重试或稍后再试。' },
+  'state.errorAction': { en: 'Retry', zh: '重试' },
 };
 
 export const t = (key: keyof typeof translations, locale: Locale) => {
