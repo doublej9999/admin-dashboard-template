@@ -24,6 +24,7 @@ const navItems: Array<{ label: string; to: string; icon: typeof LayoutGrid; key:
   { label: 'nav.notifications', to: '/notifications', icon: Bell, key: 'notifications' },
   { label: 'nav.files', to: '/files', icon: FolderOpen, key: 'files' },
   { label: 'nav.auditLogs', to: '/audit-logs', icon: ClipboardList, key: 'audit-logs' },
+  { label: 'nav.kanban', to: '/kanban', icon: LayoutGrid, key: 'analytics' },
   { label: 'nav.settings', to: '/settings', icon: Settings, key: 'settings' },
 ];
 
