@@ -73,7 +73,7 @@ const Topbar = ({ onMenuClick, onCommandClick }: TopbarProps) => {
 
         <div className="relative">
           <button
-            onClick={() => navigate('/notifications')}
+            onClick={() => navigate('/messages')}
             className="relative inline-flex h-10 w-10 items-center justify-center rounded-xl border border-base-200 dark:border-base-700"
             aria-label="Notifications"
           >
