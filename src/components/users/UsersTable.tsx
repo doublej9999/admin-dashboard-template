@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import clsx from 'clsx';
 import { mockUsers } from '../../data/users';
 import type { UserRecord } from '../../data/users';
-import { usePagination } from '../../hooks/usePagination';
+import DataTable, { type DataTableColumn } from '../common/DataTable';
 import UserFormModal from './UserFormModal';
 
 const statusStyles: Record<UserRecord['status'], string> = {
@@ -24,7 +24,61 @@ const UsersTable = () => {
     );
   }, [users, query]);
 
-  const { page, setPage, totalPages, pageData } = usePagination(filtered, 6);
+  const columns: Array<DataTableColumn<UserRecord>> = [
+    {
+      key: 'name',
+      header: 'Name',
+      render: (user) => (
+        <div>
+          <p className="font-semibold text-base-800 dark:text-base-100">{user.name}</p>
+          <p className="text-xs text-base-400">{user.id}</p>
+        </div>
+      ),
+      sortValue: (user) => user.name,
+      sortable: true,
+    },
+    {
+      key: 'email',
+      header: 'Email',
+      render: (user) => <span className="text-base-500">{user.email}</span>,
+      sortValue: (user) => user.email,
+      sortable: true,
+    },
+    {
+      key: 'role',
+      header: 'Role',
+      render: (user) => <span className="text-base-500">{user.role}</span>,
+    },
+    {
+      key: 'status',
+      header: 'Status',
+      render: (user) => (
+        <span className={clsx('inline-flex rounded-full px-2 py-1 text-xs font-semibold', statusStyles[user.status])}>
+          {user.status}
+        </span>
+      ),
+    },
+    {
+      key: 'actions',
+      header: 'Actions',
+      render: (user) => (
+        <div className="flex items-center justify-end gap-2 density-pad">
+          <button
+            onClick={() => handleEdit(user)}
+            className="rounded-lg border border-base-200 dark:border-base-700 px-3 py-1 text-xs"
+          >
+            Edit
+          </button>
+          <button
+            onClick={() => handleDelete(user)}
+            className="rounded-lg border border-danger/40 text-danger px-3 py-1 text-xs"
+          >
+            Delete
+          </button>
+        </div>
+      ),
+    },
+  ];
 
   const handleCreate = () => {
     setEditingUser(null);
@@ -75,74 +129,14 @@ const UsersTable = () => {
         </div>
       </div>
 
-      <div className="mt-6 overflow-x-auto">
-        <table className="w-full text-left text-sm">
-          <thead>
-            <tr className="text-xs uppercase text-base-400 border-b border-base-200 dark:border-base-700">
-              <th className="py-3">Name</th>
-              <th className="py-3">Email</th>
-              <th className="py-3">Role</th>
-              <th className="py-3">Status</th>
-              <th className="py-3 text-right">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {pageData.map((user) => (
-              <tr key={user.id} className="border-b border-base-100 dark:border-base-700/60">
-                <td className="py-3">
-                  <p className="font-semibold text-base-800 dark:text-base-100">{user.name}</p>
-                  <p className="text-xs text-base-400">{user.id}</p>
-                </td>
-                <td className="py-3 text-base-500">{user.email}</td>
-                <td className="py-3 text-base-500">{user.role}</td>
-                <td className="py-3">
-                  <span className={clsx('inline-flex rounded-full px-2 py-1 text-xs font-semibold', statusStyles[user.status])}>
-                    {user.status}
-                  </span>
-                </td>
-                <td className="py-3 text-right">
-                  <div className="flex items-center justify-end gap-2 density-pad">
-                    <button
-                      onClick={() => handleEdit(user)}
-                      className="rounded-lg border border-base-200 dark:border-base-700 px-3 py-1 text-xs"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => handleDelete(user)}
-                      className="rounded-lg border border-danger/40 text-danger px-3 py-1 text-xs"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="mt-4 flex items-center justify-between">
-        <p className="text-xs text-base-400">Page {page} of {totalPages}</p>
-        <div className="flex items-center gap-2 density-pad">
-          {Array.from({ length: totalPages }).map((_, index) => {
-            const pageNumber = index + 1;
-            return (
-              <button
-                key={pageNumber}
-                onClick={() => setPage(pageNumber)}
-                className={clsx(
-                  'rounded-lg px-3 py-1 text-xs',
-                  pageNumber === page
-                    ? 'bg-brand-500 text-white'
-                    : 'border border-base-200 dark:border-base-700 text-base-500'
-                )}
-              >
-                {pageNumber}
-              </button>
-            );
-          })}
-        </div>
+      <div className="mt-6">
+        <DataTable
+          data={filtered}
+          columns={columns}
+          pageSize={6}
+          getRowKey={(user) => user.id}
+          emptyText="No users"
+        />
       </div>
 
       <UserFormModal
