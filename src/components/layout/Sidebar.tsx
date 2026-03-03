@@ -26,6 +26,7 @@ const navItems: Array<{ label: string; to: string; icon: typeof LayoutGrid; key:
   { label: 'nav.notifications', to: '/notifications', icon: Bell, key: 'notifications' },
   { label: 'nav.messages', to: '/messages', icon: MessageCircle, key: 'messages' },
   { label: 'nav.profile', to: '/profile', icon: User, key: 'profile' },
+  { label: 'nav.org', to: '/org', icon: ClipboardList, key: 'org' },
   { label: 'nav.files', to: '/files', icon: FolderOpen, key: 'files' },
   { label: 'nav.auditLogs', to: '/audit-logs', icon: ClipboardList, key: 'audit-logs' },
   { label: 'nav.kanban', to: '/kanban', icon: LayoutGrid, key: 'analytics' },
