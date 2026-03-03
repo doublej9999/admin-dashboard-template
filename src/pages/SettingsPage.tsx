@@ -2,7 +2,8 @@ import { type ChangeEvent } from 'react';
 import clsx from 'clsx';
 import { useDarkMode } from '../hooks/useDarkMode';
 import { useSettings } from '../hooks/useSettings';
-import { useI18n, mapLanguageToLocale, mapLocaleToLanguage } from '../contexts/I18nContext';
+import { useI18n } from '../contexts/useI18n';
+import { mapLanguageToLocale, mapLocaleToLanguage } from '../contexts/i18nUtils';
 
 const SettingsPage = () => {
   const { mode, toggle } = useDarkMode();
