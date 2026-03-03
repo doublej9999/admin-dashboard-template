@@ -68,6 +68,7 @@ npm run preview
 ## 🧾 Changelog / Features
 
 - Login page + auth guard (mock login, localStorage token, logout)
+- System settings page (theme toggle, language placeholder, profile settings)
 
 ## 📸 截图
 

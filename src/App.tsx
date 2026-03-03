@@ -2,8 +2,9 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import AppLayout from './components/layout/AppLayout';
 import RequireAuth from './components/auth/RequireAuth';
 import DashboardPage from './pages/DashboardPage';
-import PlaceholderPage from './pages/PlaceholderPage';
 import LoginPage from './pages/LoginPage';
+import PlaceholderPage from './pages/PlaceholderPage';
+import SettingsPage from './pages/SettingsPage';
 import { isAuthed } from './utils/auth';
 
 const App = () => {
@@ -21,7 +22,7 @@ const App = () => {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/analytics" element={<PlaceholderPage title="Analytics" />} />
         <Route path="/users" element={<PlaceholderPage title="Users" />} />
-        <Route path="/settings" element={<PlaceholderPage title="Settings" />} />
+        <Route path="/settings" element={<SettingsPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>
