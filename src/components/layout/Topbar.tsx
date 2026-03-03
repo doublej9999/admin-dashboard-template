@@ -8,9 +8,10 @@ import clsx from 'clsx';
 
 interface TopbarProps {
   onMenuClick: () => void;
+  onCommandClick: () => void;
 }
 
-const Topbar = ({ onMenuClick }: TopbarProps) => {
+const Topbar = ({ onMenuClick, onCommandClick }: TopbarProps) => {
   const navigate = useNavigate();
   const { mode, toggle } = useDarkMode();
   const notifications = useNotifications();
@@ -32,16 +33,27 @@ const Topbar = ({ onMenuClick }: TopbarProps) => {
         >
           <span className="text-lg">☰</span>
         </button>
-        <div className="relative hidden md:block">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-base-400" />
-          <input
-            className="w-72 rounded-xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-800 px-9 py-2 text-sm outline-none focus:border-brand-500"
-            placeholder="Search..."
-          />
-        </div>
+        <button
+          onClick={onCommandClick}
+          className="hidden md:flex items-center gap-2 rounded-xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-800 px-3 py-2 text-sm text-base-400 hover:text-base-600 dark:hover:text-base-200"
+          aria-label="Open command palette"
+        >
+          <Search className="h-4 w-4" />
+          <span className="text-base-500">Search or type a command</span>
+          <span className="ml-6 rounded-md border border-base-200 dark:border-base-700 bg-white/70 dark:bg-base-900/70 px-2 py-0.5 text-xs text-base-400">
+            ⌘K
+          </span>
+        </button>
       </div>
 
       <div className="flex items-center gap-3">
+        <button
+          onClick={onCommandClick}
+          className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-xl border border-base-200 dark:border-base-700"
+          aria-label="Open command palette"
+        >
+          <Search size={18} />
+        </button>
         <button
           onClick={toggle}
           className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-base-200 dark:border-base-700"
