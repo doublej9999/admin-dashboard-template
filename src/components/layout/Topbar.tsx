@@ -26,8 +26,8 @@ const Topbar = ({ onMenuClick, onCommandClick }: TopbarProps) => {
   };
 
   return (
-    <header className="flex items-center justify-between gap-4 border-b border-base-200 dark:border-base-700 bg-white/80 dark:bg-base-900/80 backdrop-blur px-4 py-3 lg:px-6">
-      <div className="flex items-center gap-3">
+    <header className="flex items-center justify-between gap-4 density-pad border-b border-base-200 dark:border-base-700 bg-white/80 dark:bg-base-900/80 backdrop-blur px-4 py-3 lg:px-6">
+      <div className="flex items-center gap-3 density-pad">
         <button
           onClick={onMenuClick}
           className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-base-200 dark:border-base-700"
@@ -37,7 +37,7 @@ const Topbar = ({ onMenuClick, onCommandClick }: TopbarProps) => {
         </button>
         <button
           onClick={onCommandClick}
-          className="hidden md:flex items-center gap-2 rounded-xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-800 px-3 py-2 text-sm text-base-400 hover:text-base-600 dark:hover:text-base-200"
+          className="hidden md:flex items-center gap-2 density-pad rounded-xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-800 px-3 py-2 text-sm text-base-400 hover:text-base-600 dark:hover:text-base-200"
           aria-label={t('common.openCommandPalette')}
         >
           <Search className="h-4 w-4" />
@@ -48,7 +48,7 @@ const Topbar = ({ onMenuClick, onCommandClick }: TopbarProps) => {
         </button>
       </div>
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 density-pad">
         <button
           onClick={onCommandClick}
           className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-xl border border-base-200 dark:border-base-700"
@@ -79,7 +79,7 @@ const Topbar = ({ onMenuClick, onCommandClick }: TopbarProps) => {
           >
             <Bell size={18} />
             {unreadCount > 0 && (
-              <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-danger" />
+              <span className="absolute right-2 top-2 density-pad h-2 w-2 rounded-full bg-danger" />
             )}
           </button>
         </div>
@@ -87,7 +87,7 @@ const Topbar = ({ onMenuClick, onCommandClick }: TopbarProps) => {
         <div className="relative">
           <button
             onClick={() => setShowUserMenu((prev) => !prev)}
-            className="flex items-center gap-3 rounded-xl border border-base-200 dark:border-base-700 px-3 py-2"
+            className="flex items-center gap-3 density-pad rounded-xl border border-base-200 dark:border-base-700 px-3 py-2"
             aria-label="User menu"
           >
             <img
@@ -101,7 +101,7 @@ const Topbar = ({ onMenuClick, onCommandClick }: TopbarProps) => {
             </div>
           </button>
           {showUserMenu && (
-            <div className="absolute right-0 mt-2 w-48 rounded-xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 shadow-card p-2 z-20">
+            <div className="absolute right-0 mt-2 w-48 rounded-xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 shadow-card density-pad p-2 z-20">
               {[
                 { label: 'Profile', icon: User, action: () => navigate('/profile') },
                 { label: 'Settings', icon: Settings, action: () => navigate('/settings') },
@@ -113,7 +113,7 @@ const Topbar = ({ onMenuClick, onCommandClick }: TopbarProps) => {
                     key={item.label}
                     onClick={item.action}
                     className={clsx(
-                      'flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm',
+                      'flex w-full items-center gap-3 density-pad rounded-lg px-3 py-2 text-sm',
                       item.danger
                         ? 'text-danger hover:bg-danger/10'
                         : 'text-base-600 hover:bg-base-100 dark:hover:bg-base-700/60'

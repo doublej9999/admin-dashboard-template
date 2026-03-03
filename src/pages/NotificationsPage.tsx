@@ -26,12 +26,12 @@ const NotificationsPage = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-4 density-pad md:flex-row md:items-center md:justify-between">
         <div>
           <p className="text-sm text-base-500">{t('notifications.inbox')}</p>
           <h1 className="text-2xl font-semibold text-base-900 dark:text-base-100">{t('notifications.title')}</h1>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 density-pad">
           <button
             onClick={() => setFilter('all')}
             className={clsx(
@@ -68,7 +68,7 @@ const NotificationsPage = () => {
           <div
             key={item.id}
             className={clsx(
-              'rounded-2xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-5 shadow-card',
+              'card-shell border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-5 density-pad shadow-card density-pad',
               !item.read && 'ring-1 ring-brand-500/40'
             )}
           >

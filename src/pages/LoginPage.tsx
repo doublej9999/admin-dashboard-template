@@ -23,21 +23,21 @@ const LoginPage = () => {
 
   return (
     <div className="min-h-screen bg-base-50 dark:bg-base-900 flex items-center justify-center px-4">
-      <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="rounded-3xl bg-gradient-to-br from-brand-500 to-brand-700 p-10 text-white shadow-card hidden md:block">
+      <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8 density-pad">
+        <div className="rounded-3xl bg-gradient-to-br from-brand-500 to-brand-700 p-10 density-pad text-white shadow-card density-pad hidden md:block">
           <p className="text-sm text-white/70">Admin Dashboard</p>
           <h1 className="mt-4 text-3xl font-semibold">Welcome back</h1>
           <p className="mt-4 text-sm text-white/80">
             Sign in to manage analytics, users, and system settings.
           </p>
-          <div className="mt-10 rounded-2xl bg-white/10 p-4 text-sm">
+          <div className="mt-10 card-shell bg-white/10 p-4 density-pad text-sm">
             <p className="font-semibold">Demo Account</p>
             <p>username: admin</p>
             <p>password: admin123</p>
           </div>
         </div>
 
-        <div className="rounded-3xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-8 shadow-card">
+        <div className="rounded-3xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-8 density-pad shadow-card density-pad">
           <div className="mb-6">
             <h2 className="text-2xl font-semibold text-base-900 dark:text-base-100">Sign in</h2>
             <p className="text-sm text-base-500">Access your admin workspace</p>
@@ -65,7 +65,7 @@ const LoginPage = () => {
             </div>
 
             <div className="flex items-center justify-between text-sm">
-              <label className="flex items-center gap-2 text-base-500">
+              <label className="flex items-center gap-2 density-pad text-base-500">
                 <input
                   type="checkbox"
                   checked={remember}
@@ -83,7 +83,7 @@ const LoginPage = () => {
 
             <button
               type="submit"
-              className="w-full rounded-xl bg-brand-500 py-2.5 text-sm font-semibold text-white shadow-card hover:bg-brand-600"
+              className="w-full rounded-xl bg-brand-500 py-2.5 text-sm font-semibold text-white shadow-card density-pad hover:bg-brand-600"
             >
               Sign in
             </button>

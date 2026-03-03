@@ -31,8 +31,8 @@ const AuditLogsPage = () => {
         <h1 className="text-2xl font-semibold text-base-900 dark:text-base-100">{t('audit.title')}</h1>
       </div>
 
-      <div className="rounded-2xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-5 shadow-card">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
+      <div className="card-shell border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-5 density-pad shadow-card density-pad">
+        <div className="grid grid-cols-1 gap-4 density-pad md:grid-cols-4">
           <input
             className="rounded-xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-900 px-4 py-2 text-sm"
             placeholder={t('audit.filterUser')}
@@ -60,7 +60,7 @@ const AuditLogsPage = () => {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-6 shadow-card">
+      <div className="card-shell border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-6 density-pad shadow-card density-pad">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
             <thead>
@@ -98,7 +98,7 @@ const AuditLogsPage = () => {
         </div>
         <div className="mt-4 flex items-center justify-between">
           <p className="text-xs text-base-400">{t('audit.page')} {page} / {totalPages}</p>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 density-pad">
             {Array.from({ length: totalPages }).map((_, index) => {
               const pageNumber = index + 1;
               return (

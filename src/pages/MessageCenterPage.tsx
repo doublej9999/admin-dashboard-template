@@ -30,12 +30,12 @@ const MessageCenterPage = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-4 density-pad md:flex-row md:items-center md:justify-between">
         <div>
           <p className="text-sm text-base-500">{t('messages.section')}</p>
           <h1 className="text-2xl font-semibold text-base-900 dark:text-base-100">{t('messages.title')}</h1>
         </div>
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3 density-pad">
           <button
             onClick={() => setFilter('all')}
             className={clsx(
@@ -67,7 +67,7 @@ const MessageCenterPage = () => {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-4 shadow-card">
+      <div className="card-shell border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-4 density-pad shadow-card density-pad">
         <input
           className="w-full rounded-xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-900 px-4 py-2 text-sm"
           placeholder={t('messages.searchPlaceholder')}
@@ -81,16 +81,16 @@ const MessageCenterPage = () => {
           <div
             key={item.id}
             className={clsx(
-              'rounded-2xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-5 shadow-card',
+              'card-shell border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-5 density-pad shadow-card density-pad',
               !item.read && 'ring-1 ring-brand-500/40'
             )}
           >
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div className="flex flex-col gap-4 density-pad md:flex-row md:items-center md:justify-between">
               <div>
                 <h3 className="text-base font-semibold text-base-900 dark:text-base-100">{item.title}</h3>
                 <p className="text-sm text-base-500">{item.detail}</p>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 density-pad">
                 <span
                   className={clsx(
                     'rounded-full px-3 py-1 text-xs font-semibold',
@@ -111,7 +111,7 @@ const MessageCenterPage = () => {
           </div>
         ))}
         {filtered.length === 0 && (
-          <div className="rounded-2xl border border-dashed border-base-300 dark:border-base-700 bg-white dark:bg-base-800 p-6 text-sm text-base-500">
+          <div className="card-shell border border-dashed border-base-300 dark:border-base-700 bg-white dark:bg-base-800 p-6 density-pad text-sm text-base-500">
             {t('messages.empty')}
           </div>
         )}

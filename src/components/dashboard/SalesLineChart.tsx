@@ -20,8 +20,8 @@ const SalesLineChart = () => {
   }, [range]);
 
   return (
-    <div className="rounded-2xl bg-white dark:bg-base-800 border border-base-200 dark:border-base-700 p-5 shadow-card">
-      <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <div className="card-shell bg-white dark:bg-base-800 border border-base-200 dark:border-base-700 p-5 density-pad shadow-card density-pad">
+      <div className="mb-4 flex flex-col gap-3 density-pad sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-sm text-base-500">{t('reports.salesTrend')}</p>
           <p className="text-lg font-semibold text-base-900 dark:text-base-100">

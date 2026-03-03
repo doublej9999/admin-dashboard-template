@@ -105,12 +105,12 @@ const OrgStructurePage = () => {
 
   const renderNode = (node: OrgNode) => (
     <div key={node.id} className="flex flex-col items-center">
-      <div className="rounded-2xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 px-4 py-3 shadow-sm">
+      <div className="card-shell border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 px-4 py-3 shadow-sm">
         <p className="text-sm font-semibold text-base-900 dark:text-base-100">{node.name}</p>
         <p className="text-xs text-base-400">{node.role}</p>
       </div>
       {node.reports && (
-        <div className="mt-4 flex flex-wrap justify-center gap-4">
+        <div className="mt-4 flex flex-wrap justify-center gap-4 density-pad">
           {node.reports.map((child) => renderNode(child))}
         </div>
       )}
@@ -119,12 +119,12 @@ const OrgStructurePage = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-4 density-pad md:flex-row md:items-center md:justify-between">
         <div>
           <p className="text-sm text-base-500">{t('org.section')}</p>
           <h1 className="text-2xl font-semibold text-base-900 dark:text-base-100">{t('org.title')}</h1>
         </div>
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3 density-pad">
           <input
             className="rounded-xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-900 px-4 py-2 text-sm"
             placeholder={t('org.searchPlaceholder')}
@@ -144,15 +144,15 @@ const OrgStructurePage = () => {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-6 shadow-card">
+      <div className="card-shell border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-6 density-pad shadow-card density-pad">
         <h2 className="text-lg font-semibold text-base-900 dark:text-base-100">{t('org.treeTitle')}</h2>
-        <div className="mt-6 flex flex-col items-center gap-6">
+        <div className="mt-6 flex flex-col items-center gap-6 density-pad">
           {renderNode(orgData)}
         </div>
       </div>
 
-      <div className="rounded-2xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-6 shadow-card">
-        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+      <div className="card-shell border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-6 density-pad shadow-card density-pad">
+        <div className="flex flex-col gap-3 density-pad md:flex-row md:items-center md:justify-between">
           <div>
             <h2 className="text-lg font-semibold text-base-900 dark:text-base-100">{t('org.membersTitle')}</h2>
             <p className="text-sm text-base-500">{t('org.membersSubtitle', { count: filteredMembers.length })}</p>
@@ -161,11 +161,11 @@ const OrgStructurePage = () => {
             {t('org.addMember')}
           </button>
         </div>
-        <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <div className="mt-4 grid grid-cols-1 gap-4 density-pad lg:grid-cols-2">
           {filteredMembers.map((member) => (
             <div
               key={member.id}
-              className="rounded-2xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-900 p-4"
+              className="card-shell border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-900 p-4 density-pad"
             >
               <div className="flex items-center justify-between">
                 <div>
@@ -185,12 +185,12 @@ const OrgStructurePage = () => {
                   {t(`org.status.${member.status}` as const)}
                 </span>
               </div>
-              <div className="mt-3 flex flex-wrap items-center gap-3 text-xs text-base-400">
+              <div className="mt-3 flex flex-wrap items-center gap-3 density-pad text-xs text-base-400">
                 <span>{member.team}</span>
                 <span>•</span>
                 <span>{member.location}</span>
               </div>
-              <div className="mt-4 flex items-center gap-2">
+              <div className="mt-4 flex items-center gap-2 density-pad">
                 <button className="rounded-lg border border-base-200 dark:border-base-700 px-3 py-1 text-xs">
                   {t('org.edit')}
                 </button>

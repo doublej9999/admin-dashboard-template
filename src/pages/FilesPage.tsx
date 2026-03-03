@@ -35,7 +35,7 @@ const FilesPage = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-4 density-pad md:flex-row md:items-center md:justify-between">
         <div>
           <p className="text-sm text-base-500">{t('files.storage')}</p>
           <h1 className="text-2xl font-semibold text-base-900 dark:text-base-100">{t('files.title')}</h1>
@@ -43,15 +43,15 @@ const FilesPage = () => {
             {totalSize.toFixed(2)} {t('files.used')}
           </p>
         </div>
-        <label className="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold text-white cursor-pointer">
+        <label className="inline-flex items-center gap-2 density-pad rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold text-white cursor-pointer">
           {t('files.upload')}
           <input type="file" className="hidden" onChange={handleUpload} />
         </label>
       </div>
 
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-5 density-pad lg:grid-cols-3">
         {files.map((file) => (
-          <div key={file.id} className="rounded-2xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-5 shadow-card">
+          <div key={file.id} className="card-shell border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-5 density-pad shadow-card density-pad">
             <div className="h-36 rounded-xl bg-base-100 dark:bg-base-700/60 flex items-center justify-center overflow-hidden">
               {file.previewUrl ? (
                 <img src={file.previewUrl} alt={file.name} className="h-full w-full object-cover" />

@@ -32,7 +32,7 @@ const UserFormModal = ({ open, initial, onClose, onSubmit }: UserFormModalProps)
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
-      <div className="w-full max-w-lg rounded-2xl bg-white dark:bg-base-800 p-6 shadow-card border border-base-200 dark:border-base-700">
+      <div className="w-full max-w-lg card-shell bg-white dark:bg-base-800 p-6 density-pad shadow-card density-pad border border-base-200 dark:border-base-700">
         <div className="mb-4">
           <h3 className="text-lg font-semibold text-base-900 dark:text-base-100">
             {initial ? 'Edit user' : 'Add new user'}
@@ -56,7 +56,7 @@ const UserFormModal = ({ open, initial, onClose, onSubmit }: UserFormModalProps)
               defaultValue={initial?.email ?? ''}
             />
           </div>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 density-pad md:grid-cols-2">
             <div>
               <label className="text-sm text-base-500">Role</label>
               <select
@@ -83,7 +83,7 @@ const UserFormModal = ({ open, initial, onClose, onSubmit }: UserFormModalProps)
             </div>
           </div>
         </div>
-        <div className="mt-6 flex items-center justify-end gap-3">
+        <div className="mt-6 flex items-center justify-end gap-3 density-pad">
           <button
             onClick={onClose}
             className="rounded-xl border border-base-200 dark:border-base-700 px-4 py-2 text-sm"

@@ -3,6 +3,9 @@ export interface ProfileSettings {
   avatarUrl: string;
   language: string;
   theme: 'light' | 'dark';
+  accent: 'blue' | 'emerald' | 'violet' | 'rose';
+  radius: 'rounded' | 'soft' | 'square';
+  density: 'comfortable' | 'compact';
 }
 
 const SETTINGS_KEY = 'admin-dashboard-settings';
@@ -12,6 +15,9 @@ const defaultSettings: ProfileSettings = {
   avatarUrl: 'https://i.pravatar.cc/80?img=3',
   language: 'en-US',
   theme: 'light',
+  accent: 'blue',
+  radius: 'soft',
+  density: 'comfortable',
 };
 
 export const getSettings = (): ProfileSettings => {
@@ -28,4 +34,5 @@ export const getSettings = (): ProfileSettings => {
 
 export const saveSettings = (settings: ProfileSettings) => {
   localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+  window.dispatchEvent(new Event('settings-change'));
 };
