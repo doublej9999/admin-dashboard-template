@@ -9,6 +9,7 @@ export const translations: Dictionary = {
   'nav.roles': { en: 'Roles', zh: '角色' },
   'nav.notifications': { en: 'Notifications', zh: '通知' },
   'nav.files': { en: 'Files', zh: '文件' },
+  'nav.messages': { en: 'Messages', zh: '消息中心' },
   'nav.auditLogs': { en: 'Audit Logs', zh: '审计日志' },
   'nav.settings': { en: 'Settings', zh: '设置' },
   'common.searchPlaceholder': { en: 'Search or type a command', zh: '搜索或输入指令' },
@@ -113,6 +114,17 @@ export const translations: Dictionary = {
   'kanban.column.review': { en: 'Review', zh: '评审' },
   'kanban.column.done': { en: 'Done', zh: '已完成' },
   'kanban.dragHint': { en: 'Drag to move', zh: '拖拽移动' },
+  'messages.section': { en: 'Inbox', zh: '收件箱' },
+  'messages.title': { en: 'Message Center', zh: '消息中心' },
+  'messages.filterAll': { en: 'All', zh: '全部' },
+  'messages.filterUnread': { en: 'Unread', zh: '未读' },
+  'messages.markAllRead': { en: 'Mark all read', zh: '全部标记为已读' },
+  'messages.searchPlaceholder': { en: 'Search messages', zh: '搜索消息' },
+  'messages.read': { en: 'Read', zh: '已读' },
+  'messages.unread': { en: 'Unread', zh: '未读' },
+  'messages.markRead': { en: 'Mark read', zh: '标记已读' },
+  'messages.markUnread': { en: 'Mark unread', zh: '标记未读' },
+  'messages.empty': { en: 'No messages found.', zh: '暂无消息。' },
 };
 
 export const t = (key: keyof typeof translations, locale: Locale) => {
