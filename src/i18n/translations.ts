@@ -174,6 +174,18 @@ export const translations: Dictionary = {
   'state.errorTitle': { en: 'Something went wrong', zh: '发生错误' },
   'state.errorDescription': { en: 'Please retry or check back later.', zh: '请重试或稍后再试。' },
   'state.errorAction': { en: 'Retry', zh: '重试' },
+  'tour.label': { en: 'Quick tour', zh: '快速上手' },
+  'tour.step1Title': { en: 'Welcome to the dashboard', zh: '欢迎来到仪表盘' },
+  'tour.step1Body': { en: 'Review KPIs, recent orders, and performance trends here.', zh: '在这里查看 KPI、最新订单和趋势表现。' },
+  'tour.step2Title': { en: 'Manage your team', zh: '管理你的团队' },
+  'tour.step2Body': { en: 'Use roles, org structure, and profile pages to keep access aligned.', zh: '使用角色、组织架构和个人中心管理权限。' },
+  'tour.step3Title': { en: 'Stay on top of updates', zh: '掌握最新动态' },
+  'tour.step3Body': { en: 'Message center and notifications keep you in sync.', zh: '消息中心与通知帮助你保持同步。' },
+  'tour.skip': { en: 'Skip', zh: '跳过' },
+  'tour.prev': { en: 'Previous', zh: '上一步' },
+  'tour.next': { en: 'Next', zh: '下一步' },
+  'tour.finish': { en: 'Finish', zh: '完成' },
+  'tour.stepCount': { en: 'Step {current} / {total}', zh: '步骤 {current}/{total}' },
 };
 
 export const t = (key: keyof typeof translations, locale: Locale) => {
