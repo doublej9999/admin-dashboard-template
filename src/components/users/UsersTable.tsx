@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import clsx from 'clsx';
 import { mockUsers } from '../../data/users';
 import type { UserRecord } from '../../data/users';
-import { useI18n } from '../../contexts/I18nContext';
+import { useI18n } from '../../contexts/useI18n';
 import DataTable, { type DataTableColumn } from '../common/DataTable';
 import UserFormModal from './UserFormModal';
 

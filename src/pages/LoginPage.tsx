@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useI18n } from '../contexts/I18nContext';
+import { useI18n } from '../contexts/useI18n';
 import { login } from '../utils/auth';
 
 const LoginPage = () => {
