@@ -3,7 +3,7 @@ import OrdersTable from '../components/dashboard/OrdersTable';
 import SalesLineChart from '../components/dashboard/SalesLineChart';
 import StatCard from '../components/dashboard/StatCard';
 import { stats } from '../data/mock';
-import { useI18n } from '../contexts/I18nContext';
+import { useI18n } from '../contexts/useI18n';
 
 const icons = [
   <TrendingUp size={20} key="sales" />,

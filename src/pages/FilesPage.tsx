@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import clsx from 'clsx';
 import { getFiles, saveFiles } from '../utils/files';
 import type { FileItem } from '../data/files';
-import { useI18n } from '../contexts/I18nContext';
+import { useI18n } from '../contexts/useI18n';
 
 const FilesPage = () => {
   const [files, setFiles] = useState<FileItem[]>(getFiles());
