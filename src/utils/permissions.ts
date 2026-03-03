@@ -1,6 +1,13 @@
 import type { PermissionKey } from '../data/roles';
 
-export type MenuKey = 'dashboard' | 'analytics' | 'users' | 'roles' | 'notifications' | 'settings';
+export type MenuKey =
+  | 'dashboard'
+  | 'analytics'
+  | 'users'
+  | 'roles'
+  | 'notifications'
+  | 'audit-logs'
+  | 'settings';
 
 export const menuPermissionMap: Record<MenuKey, PermissionKey> = {
   dashboard: 'dashboard:view',
@@ -8,5 +15,6 @@ export const menuPermissionMap: Record<MenuKey, PermissionKey> = {
   users: 'users:view',
   roles: 'users:edit',
   notifications: 'dashboard:view',
+  'audit-logs': 'users:edit',
   settings: 'settings:view',
 };

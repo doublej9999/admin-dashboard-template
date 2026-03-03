@@ -72,6 +72,7 @@ npm run preview
 - User management CRUD (search, add/edit modal, delete confirm, pagination)
 - Roles & permissions (RBAC) with menu filtering and permission preview
 - Notifications center page with filters and read status
+- Audit logs page with filters and pagination
 
 ## 📸 截图
 
