@@ -75,7 +75,7 @@ const Topbar = ({ onMenuClick, onCommandClick }: TopbarProps) => {
           <button
             onClick={() => navigate('/messages')}
             className="relative inline-flex h-10 w-10 items-center justify-center rounded-xl border border-base-200 dark:border-base-700"
-            aria-label="Notifications"
+            aria-label={t('topbar.notifications')}
           >
             <Bell size={18} aria-hidden="true" />
             {unreadCount > 0 && (
@@ -103,9 +103,9 @@ const Topbar = ({ onMenuClick, onCommandClick }: TopbarProps) => {
           {showUserMenu && (
             <div className="absolute right-0 mt-2 w-48 rounded-xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 shadow-card density-pad p-2 z-20" role="menu" aria-label="User menu">
               {[
-                { label: 'Profile', icon: User, action: () => navigate('/profile') },
-                { label: 'Settings', icon: Settings, action: () => navigate('/settings') },
-                { label: 'Logout', icon: LogOut, danger: true, action: handleLogout },
+                { label: t('topbar.profile'), icon: User, action: () => navigate('/profile') },
+                { label: t('topbar.settings'), icon: Settings, action: () => navigate('/settings') },
+                { label: t('topbar.logout'), icon: LogOut, danger: true, action: handleLogout },
               ].map((item) => {
                 const Icon = item.icon;
                 return (

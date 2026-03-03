@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import clsx from 'clsx';
 import { mockUsers } from '../../data/users';
 import type { UserRecord } from '../../data/users';
+import { useI18n } from '../../contexts/I18nContext';
 import DataTable, { type DataTableColumn } from '../common/DataTable';
 import UserFormModal from './UserFormModal';
 
@@ -12,6 +13,7 @@ const statusStyles: Record<UserRecord['status'], string> = {
 };
 
 const UsersTable = () => {
+  const { t } = useI18n();
   const [users, setUsers] = useState<UserRecord[]>(mockUsers);
   const [query, setQuery] = useState('');
   const [editingUser, setEditingUser] = useState<UserRecord | null>(null);
@@ -27,7 +29,7 @@ const UsersTable = () => {
   const columns: Array<DataTableColumn<UserRecord>> = [
     {
       key: 'name',
-      header: 'Name',
+      header: t('users.headerName'),
       render: (user) => (
         <div>
           <p className="font-semibold text-base-800 dark:text-base-100">{user.name}</p>
@@ -39,19 +41,19 @@ const UsersTable = () => {
     },
     {
       key: 'email',
-      header: 'Email',
+      header: t('users.headerEmail'),
       render: (user) => <span className="text-base-500">{user.email}</span>,
       sortValue: (user) => user.email,
       sortable: true,
     },
     {
       key: 'role',
-      header: 'Role',
+      header: t('users.headerRole'),
       render: (user) => <span className="text-base-500">{user.role}</span>,
     },
     {
       key: 'status',
-      header: 'Status',
+      header: t('users.headerStatus'),
       render: (user) => (
         <span className={clsx('inline-flex rounded-full px-2 py-1 text-xs font-semibold', statusStyles[user.status])}>
           {user.status}
@@ -60,20 +62,20 @@ const UsersTable = () => {
     },
     {
       key: 'actions',
-      header: 'Actions',
+      header: t('users.headerActions'),
       render: (user) => (
         <div className="flex items-center justify-end gap-2 density-pad">
           <button
             onClick={() => handleEdit(user)}
             className="rounded-lg border border-base-200 dark:border-base-700 px-3 py-1 text-xs"
           >
-            Edit
+            {t('users.edit')}
           </button>
           <button
             onClick={() => handleDelete(user)}
             className="rounded-lg border border-danger/40 text-danger px-3 py-1 text-xs"
           >
-            Delete
+            {t('users.delete')}
           </button>
         </div>
       ),
@@ -91,7 +93,7 @@ const UsersTable = () => {
   };
 
   const handleDelete = (user: UserRecord) => {
-    const confirmed = window.confirm(`Delete ${user.name}?`);
+    const confirmed = window.confirm(t('users.confirmDelete', { name: user.name }));
     if (!confirmed) return;
     setUsers((prev) => prev.filter((item) => item.id !== user.id));
   };
@@ -110,12 +112,12 @@ const UsersTable = () => {
     <div className="card-shell bg-white dark:bg-base-800 border border-base-200 dark:border-base-700 p-6 density-pad shadow-card density-pad">
       <div className="flex flex-col gap-4 density-pad md:flex-row md:items-center md:justify-between">
         <div>
-          <h2 className="text-lg font-semibold text-base-900 dark:text-base-100">Users</h2>
-          <p className="text-sm text-base-500">Manage your team members.</p>
+          <h2 className="text-lg font-semibold text-base-900 dark:text-base-100">{t('users.tableTitle')}</h2>
+          <p className="text-sm text-base-500">{t('users.tableDesc')}</p>
         </div>
         <div className="flex flex-col gap-3 density-pad sm:flex-row sm:items-center">
           <input
-            placeholder="Search name or email"
+            placeholder={t('users.searchPlaceholder')}
             className="rounded-xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-900 px-4 py-2 text-sm"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
@@ -124,7 +126,7 @@ const UsersTable = () => {
             onClick={handleCreate}
             className="rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold text-white"
           >
-            Add user
+            {t('users.addUser')}
           </button>
         </div>
       </div>
@@ -135,7 +137,7 @@ const UsersTable = () => {
           columns={columns}
           pageSize={6}
           getRowKey={(user) => user.id}
-          emptyText="No users"
+          emptyText={t('users.empty')}
         />
       </div>
 
