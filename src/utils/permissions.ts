@@ -7,6 +7,7 @@ export type MenuKey =
   | 'roles'
   | 'notifications'
   | 'messages'
+  | 'profile'
   | 'files'
   | 'audit-logs'
   | 'settings';
@@ -18,6 +19,7 @@ export const menuPermissionMap: Record<MenuKey, PermissionKey> = {
   roles: 'users:edit',
   notifications: 'dashboard:view',
   messages: 'dashboard:view',
+  profile: 'dashboard:view',
   files: 'dashboard:view',
   'audit-logs': 'users:edit',
   settings: 'settings:view',
