@@ -1,5 +1,14 @@
 import { NavLink } from 'react-router-dom';
-import { Bell, ClipboardList, LayoutGrid, LineChart, Settings, Shield, Users } from 'lucide-react';
+import {
+  Bell,
+  ClipboardList,
+  FolderOpen,
+  LayoutGrid,
+  LineChart,
+  Settings,
+  Shield,
+  Users,
+} from 'lucide-react';
 import clsx from 'clsx';
 import { hasPermission } from '../../utils/rbac';
 import { menuPermissionMap, type MenuKey } from '../../utils/permissions';
@@ -11,6 +20,7 @@ const navItems: Array<{ label: string; to: string; icon: typeof LayoutGrid; key:
   { label: 'Users', to: '/users', icon: Users, key: 'users' },
   { label: 'Roles', to: '/roles', icon: Shield, key: 'roles' },
   { label: 'Notifications', to: '/notifications', icon: Bell, key: 'notifications' },
+  { label: 'Files', to: '/files', icon: FolderOpen, key: 'files' },
   { label: 'Audit Logs', to: '/audit-logs', icon: ClipboardList, key: 'audit-logs' },
   { label: 'Settings', to: '/settings', icon: Settings, key: 'settings' },
 ];

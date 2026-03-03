@@ -73,6 +73,7 @@ npm run preview
 - Roles & permissions (RBAC) with menu filtering and permission preview
 - Notifications center page with filters and read status
 - Audit logs page with filters and pagination
+- File upload page with mock list and preview
 
 ## 📸 截图
 
