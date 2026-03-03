@@ -5,7 +5,7 @@ import { t as translate, type Locale, translations } from '../i18n/translations'
 interface I18nContextValue {
   locale: Locale;
   setLocale: (locale: Locale) => void;
-  t: (key: keyof typeof translations) => string;
+  t: (key: keyof typeof translations, params?: Record<string, string | number>) => string;
 }
 
 const I18nContext = createContext<I18nContextValue | undefined>(undefined);
@@ -34,7 +34,13 @@ export const I18nProvider = ({ children }: { children: React.ReactNode }) => {
     () => ({
       locale,
       setLocale,
-      t: (key) => translate(key, locale),
+      t: (key, params) => {
+        const base = translate(key, locale);
+        if (!params) return base;
+        return Object.entries(params).reduce((acc, [paramKey, value]) => {
+          return acc.replace(new RegExp(`\\{${paramKey}\\}`, 'g'), String(value));
+        }, base);
+      },
     }),
     [locale, setLocale]
   );
