@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import AppLayout from './components/layout/AppLayout';
 import RequireAuth from './components/auth/RequireAuth';
+import RequirePermission from './components/auth/RequirePermission';
 import AuditLogsPage from './pages/AuditLogsPage';
 import DashboardPage from './pages/DashboardPage';
 import FilesPage from './pages/FilesPage';
@@ -29,19 +30,110 @@ const App = () => {
         }
       >
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/analytics" element={<PlaceholderPage title="Analytics" />} />
-        <Route path="/users" element={<UsersPage />} />
-        <Route path="/roles" element={<RolesPage />} />
-        <Route path="/notifications" element={<NotificationsPage />} />
-        <Route path="/messages" element={<MessageCenterPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/org" element={<OrgStructurePage />} />
-        <Route path="/version" element={<VersionPage />} />
-        <Route path="/files" element={<FilesPage />} />
-        <Route path="/audit-logs" element={<AuditLogsPage />} />
-        <Route path="/kanban" element={<KanbanPage />} />
-        <Route path="/settings" element={<SettingsPage />} />
+        <Route
+          path="/dashboard"
+          element={
+            <RequirePermission permission="dashboard:view">
+              <DashboardPage />
+            </RequirePermission>
+          }
+        />
+        <Route
+          path="/analytics"
+          element={
+            <RequirePermission permission="analytics:view">
+              <PlaceholderPage title="Analytics" />
+            </RequirePermission>
+          }
+        />
+        <Route
+          path="/users"
+          element={
+            <RequirePermission permission="users:view">
+              <UsersPage />
+            </RequirePermission>
+          }
+        />
+        <Route
+          path="/roles"
+          element={
+            <RequirePermission permission="users:edit">
+              <RolesPage />
+            </RequirePermission>
+          }
+        />
+        <Route
+          path="/notifications"
+          element={
+            <RequirePermission permission="dashboard:view">
+              <NotificationsPage />
+            </RequirePermission>
+          }
+        />
+        <Route
+          path="/messages"
+          element={
+            <RequirePermission permission="dashboard:view">
+              <MessageCenterPage />
+            </RequirePermission>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <RequirePermission permission="dashboard:view">
+              <ProfilePage />
+            </RequirePermission>
+          }
+        />
+        <Route
+          path="/org"
+          element={
+            <RequirePermission permission="dashboard:view">
+              <OrgStructurePage />
+            </RequirePermission>
+          }
+        />
+        <Route
+          path="/version"
+          element={
+            <RequirePermission permission="dashboard:view">
+              <VersionPage />
+            </RequirePermission>
+          }
+        />
+        <Route
+          path="/files"
+          element={
+            <RequirePermission permission="dashboard:view">
+              <FilesPage />
+            </RequirePermission>
+          }
+        />
+        <Route
+          path="/audit-logs"
+          element={
+            <RequirePermission permission="users:edit">
+              <AuditLogsPage />
+            </RequirePermission>
+          }
+        />
+        <Route
+          path="/kanban"
+          element={
+            <RequirePermission permission="dashboard:view">
+              <KanbanPage />
+            </RequirePermission>
+          }
+        />
+        <Route
+          path="/settings"
+          element={
+            <RequirePermission permission="settings:view">
+              <SettingsPage />
+            </RequirePermission>
+          }
+        />
       </Route>
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>
