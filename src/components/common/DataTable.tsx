@@ -15,9 +15,10 @@ interface DataTableProps<T> {
   columns: Array<DataTableColumn<T>>;
   pageSize?: number;
   emptyText?: string;
+  getRowKey?: (row: T) => string;
 }
 
-const DataTable = <T,>({ data, columns, pageSize = 5, emptyText = 'No data' }: DataTableProps<T>) => {
+const DataTable = <T,>({ data, columns, pageSize = 5, emptyText = 'No data', getRowKey }: DataTableProps<T>) => {
   const [sortKey, setSortKey] = useState<string | null>(null);
   const [direction, setDirection] = useState<'asc' | 'desc'>('desc');
 
@@ -75,7 +76,10 @@ const DataTable = <T,>({ data, columns, pageSize = 5, emptyText = 'No data' }: D
             </tr>
           )}
           {pageData.map((row, index) => (
-            <tr key={index} className="border-b border-base-100 dark:border-base-700/60">
+            <tr
+              key={getRowKey ? getRowKey(row) : String(index)}
+              className="border-b border-base-100 dark:border-base-700/60"
+            >
               {columns.map((col) => (
                 <td key={col.key} className="py-3">
                   {col.render(row)}
