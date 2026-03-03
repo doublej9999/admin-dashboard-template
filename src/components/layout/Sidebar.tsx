@@ -13,16 +13,18 @@ import clsx from 'clsx';
 import { hasPermission } from '../../utils/rbac';
 import { menuPermissionMap, type MenuKey } from '../../utils/permissions';
 import { useRole } from '../../hooks/useRole';
+import { useI18n } from '../../contexts/I18nContext';
+import { translations } from '../../i18n/translations';
 
 const navItems: Array<{ label: string; to: string; icon: typeof LayoutGrid; key: MenuKey }> = [
-  { label: 'Dashboard', to: '/dashboard', icon: LayoutGrid, key: 'dashboard' },
-  { label: 'Analytics', to: '/analytics', icon: LineChart, key: 'analytics' },
-  { label: 'Users', to: '/users', icon: Users, key: 'users' },
-  { label: 'Roles', to: '/roles', icon: Shield, key: 'roles' },
-  { label: 'Notifications', to: '/notifications', icon: Bell, key: 'notifications' },
-  { label: 'Files', to: '/files', icon: FolderOpen, key: 'files' },
-  { label: 'Audit Logs', to: '/audit-logs', icon: ClipboardList, key: 'audit-logs' },
-  { label: 'Settings', to: '/settings', icon: Settings, key: 'settings' },
+  { label: 'nav.dashboard', to: '/dashboard', icon: LayoutGrid, key: 'dashboard' },
+  { label: 'nav.analytics', to: '/analytics', icon: LineChart, key: 'analytics' },
+  { label: 'nav.users', to: '/users', icon: Users, key: 'users' },
+  { label: 'nav.roles', to: '/roles', icon: Shield, key: 'roles' },
+  { label: 'nav.notifications', to: '/notifications', icon: Bell, key: 'notifications' },
+  { label: 'nav.files', to: '/files', icon: FolderOpen, key: 'files' },
+  { label: 'nav.auditLogs', to: '/audit-logs', icon: ClipboardList, key: 'audit-logs' },
+  { label: 'nav.settings', to: '/settings', icon: Settings, key: 'settings' },
 ];
 
 interface SidebarProps {
@@ -32,6 +34,7 @@ interface SidebarProps {
 
 const Sidebar = ({ collapsed, onCollapse }: SidebarProps) => {
   useRole();
+  const { t } = useI18n();
   return (
     <aside
       className={clsx(
@@ -79,7 +82,7 @@ const Sidebar = ({ collapsed, onCollapse }: SidebarProps) => {
                 }
               >
                 <Icon size={20} />
-                {!collapsed && <span>{item.label}</span>}
+                {!collapsed && <span>{t(item.label as keyof typeof translations)}</span>}
               </NavLink>
             );
           })}

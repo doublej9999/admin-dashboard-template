@@ -4,11 +4,13 @@ import type { PermissionKey, RoleRecord } from '../data/roles';
 import { mockRoles } from '../data/roles';
 import { getRoles, setCurrentRole, setRoles as persistRoles } from '../utils/rbac';
 import { usePermissions } from '../hooks/usePermissions';
+import { useI18n } from '../contexts/I18nContext';
 
 const RolesPage = () => {
   const [roles, setRoles] = useState<RoleRecord[]>(getRoles() ?? mockRoles);
   const [activeRole, setActiveRole] = useState<RoleRecord['name']>('Editor');
   const { can } = usePermissions();
+  const { t } = useI18n();
 
   const handleToggle = (roleName: RoleRecord['name'], permission: PermissionKey) => {
     setRoles((prev) => {
@@ -38,11 +40,11 @@ const RolesPage = () => {
     <div className="space-y-6">
       <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <div>
-          <p className="text-sm text-base-500">Security</p>
-          <h1 className="text-2xl font-semibold text-base-900 dark:text-base-100">Roles & Permissions</h1>
+          <p className="text-sm text-base-500">{t('audit.security')}</p>
+          <h1 className="text-2xl font-semibold text-base-900 dark:text-base-100">{t('roles.title')}</h1>
         </div>
         <div className="rounded-xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 px-4 py-2 text-sm text-base-500">
-          Current role:
+          {t('roles.currentRole')}
           <select
             className="ml-2 bg-transparent text-base-700 dark:text-base-100"
             onChange={handleRoleChange}
@@ -58,7 +60,7 @@ const RolesPage = () => {
       </div>
 
       <div className="rounded-2xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 p-6 shadow-card">
-        <p className="text-sm text-base-500">Permission preview</p>
+        <p className="text-sm text-base-500">{t('roles.permissionPreview')}</p>
         <div className="mt-3 flex flex-wrap items-center gap-3">
           <button
             disabled={!can('users:create')}
@@ -68,9 +70,9 @@ const RolesPage = () => {
                 : 'bg-base-100 text-base-400 cursor-not-allowed'
             }`}
           >
-            Create user
+            {t('roles.createUser')}
           </button>
-          <span className="text-xs text-base-400">Button disabled if role lacks users:create</span>
+          <span className="text-xs text-base-400">{t('roles.buttonDisabledInfo')}</span>
         </div>
       </div>
 

@@ -2,10 +2,12 @@ import { useMemo, useState } from 'react';
 import clsx from 'clsx';
 import { useNotifications } from '../hooks/useNotifications';
 import { saveNotifications } from '../utils/notifications';
+import { useI18n } from '../contexts/I18nContext';
 
 const NotificationsPage = () => {
   const items = useNotifications();
   const [filter, setFilter] = useState<'all' | 'unread'>('all');
+  const { t } = useI18n();
 
   const filtered = useMemo(() => {
     if (filter === 'unread') return items.filter((item) => !item.read);
@@ -26,8 +28,8 @@ const NotificationsPage = () => {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <p className="text-sm text-base-500">Inbox</p>
-          <h1 className="text-2xl font-semibold text-base-900 dark:text-base-100">Notifications</h1>
+          <p className="text-sm text-base-500">{t('notifications.inbox')}</p>
+          <h1 className="text-2xl font-semibold text-base-900 dark:text-base-100">{t('notifications.title')}</h1>
         </div>
         <div className="flex items-center gap-3">
           <button
@@ -39,7 +41,7 @@ const NotificationsPage = () => {
                 : 'border border-base-200 dark:border-base-700 text-base-500'
             )}
           >
-            All
+            {t('notifications.all')}
           </button>
           <button
             onClick={() => setFilter('unread')}
@@ -50,13 +52,13 @@ const NotificationsPage = () => {
                 : 'border border-base-200 dark:border-base-700 text-base-500'
             )}
           >
-            Unread
+            {t('notifications.unread')}
           </button>
           <button
             onClick={markAllRead}
             className="rounded-xl border border-base-200 dark:border-base-700 px-4 py-2 text-sm"
           >
-            Mark all read
+            {t('notifications.markAllRead')}
           </button>
         </div>
       </div>
@@ -80,7 +82,7 @@ const NotificationsPage = () => {
                   onClick={() => markRead(item.id)}
                   className="rounded-xl border border-base-200 dark:border-base-700 px-3 py-1 text-xs"
                 >
-                  Mark read
+                  {t('notifications.markRead')}
                 </button>
               )}
             </div>

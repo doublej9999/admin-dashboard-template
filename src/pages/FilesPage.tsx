@@ -2,9 +2,11 @@ import { useMemo, useState } from 'react';
 import clsx from 'clsx';
 import { getFiles, saveFiles } from '../utils/files';
 import type { FileItem } from '../data/files';
+import { useI18n } from '../contexts/I18nContext';
 
 const FilesPage = () => {
   const [files, setFiles] = useState<FileItem[]>(getFiles());
+  const { t } = useI18n();
 
   const totalSize = useMemo(() => files.reduce((sum, file) => sum + file.size, 0), [files]);
 
@@ -35,12 +37,14 @@ const FilesPage = () => {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <p className="text-sm text-base-500">Storage</p>
-          <h1 className="text-2xl font-semibold text-base-900 dark:text-base-100">Files</h1>
-          <p className="text-sm text-base-500">{totalSize.toFixed(2)} MB used</p>
+          <p className="text-sm text-base-500">{t('files.storage')}</p>
+          <h1 className="text-2xl font-semibold text-base-900 dark:text-base-100">{t('files.title')}</h1>
+          <p className="text-sm text-base-500">
+            {totalSize.toFixed(2)} {t('files.used')}
+          </p>
         </div>
         <label className="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold text-white cursor-pointer">
-          Upload file
+          {t('files.upload')}
           <input type="file" className="hidden" onChange={handleUpload} />
         </label>
       </div>
@@ -52,7 +56,7 @@ const FilesPage = () => {
               {file.previewUrl ? (
                 <img src={file.previewUrl} alt={file.name} className="h-full w-full object-cover" />
               ) : (
-                <div className="text-sm text-base-400">Preview unavailable</div>
+                <div className="text-sm text-base-400">{t('files.previewUnavailable')}</div>
               )}
             </div>
             <div className="mt-4">
@@ -66,8 +70,8 @@ const FilesPage = () => {
               <span className="text-base-400">{file.size.toFixed(2)} MB</span>
             </div>
             <div className="mt-4 flex items-center justify-between">
-              <button className="text-xs text-brand-500">Preview</button>
-              <button onClick={() => handleDelete(file.id)} className="text-xs text-danger">Delete</button>
+              <button className="text-xs text-brand-500">{t('files.preview')}</button>
+              <button onClick={() => handleDelete(file.id)} className="text-xs text-danger">{t('files.delete')}</button>
             </div>
           </div>
         ))}

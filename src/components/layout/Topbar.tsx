@@ -5,6 +5,7 @@ import { useDarkMode } from '../../hooks/useDarkMode';
 import { useNotifications } from '../../hooks/useNotifications';
 import { logout } from '../../utils/auth';
 import clsx from 'clsx';
+import { useI18n } from '../../contexts/I18nContext';
 
 interface TopbarProps {
   onMenuClick: () => void;
@@ -17,6 +18,7 @@ const Topbar = ({ onMenuClick, onCommandClick }: TopbarProps) => {
   const notifications = useNotifications();
   const unreadCount = notifications.filter((item) => !item.read).length;
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const { locale, setLocale, t } = useI18n();
 
   const handleLogout = () => {
     logout();
@@ -36,10 +38,10 @@ const Topbar = ({ onMenuClick, onCommandClick }: TopbarProps) => {
         <button
           onClick={onCommandClick}
           className="hidden md:flex items-center gap-2 rounded-xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-800 px-3 py-2 text-sm text-base-400 hover:text-base-600 dark:hover:text-base-200"
-          aria-label="Open command palette"
+          aria-label={t('common.openCommandPalette')}
         >
           <Search className="h-4 w-4" />
-          <span className="text-base-500">Search or type a command</span>
+          <span className="text-base-500">{t('common.searchPlaceholder')}</span>
           <span className="ml-6 rounded-md border border-base-200 dark:border-base-700 bg-white/70 dark:bg-base-900/70 px-2 py-0.5 text-xs text-base-400">
             ⌘K
           </span>
@@ -50,14 +52,21 @@ const Topbar = ({ onMenuClick, onCommandClick }: TopbarProps) => {
         <button
           onClick={onCommandClick}
           className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-xl border border-base-200 dark:border-base-700"
-          aria-label="Open command palette"
+          aria-label={t('common.openCommandPalette')}
         >
           <Search size={18} />
         </button>
         <button
+          onClick={() => setLocale(locale === 'zh' ? 'en' : 'zh')}
+          className="inline-flex h-10 items-center justify-center rounded-xl border border-base-200 dark:border-base-700 px-3 text-xs font-semibold text-base-500"
+          aria-label={t('common.language')}
+        >
+          {locale === 'zh' ? 'EN' : '中文'}
+        </button>
+        <button
           onClick={toggle}
           className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-base-200 dark:border-base-700"
-          aria-label="Toggle dark mode"
+          aria-label={t('common.toggleDark')}
         >
           {mode === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
         </button>
