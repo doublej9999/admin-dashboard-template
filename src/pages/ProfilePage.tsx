@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useI18n } from '../contexts/I18nContext';
+import { useI18n } from '../contexts/useI18n';
 import { useSettings } from '../hooks/useSettings';
 
 const activity = [

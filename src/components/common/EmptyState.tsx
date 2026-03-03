@@ -1,5 +1,5 @@
 import { Inbox } from 'lucide-react';
-import { useI18n } from '../../contexts/I18nContext';
+import { useI18n } from '../../contexts/useI18n';
 
 interface EmptyStateProps {
   title?: string;
