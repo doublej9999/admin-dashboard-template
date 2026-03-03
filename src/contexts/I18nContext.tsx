@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useCallback, useMemo, useState } from 'react';
 import { getSettings, saveSettings } from '../utils/settings';
 import { t as translate, type Locale, translations } from '../i18n/translations';
@@ -32,7 +33,7 @@ export const I18nProvider = ({ children }: { children: React.ReactNode }) => {
         const base = translate(key, locale);
         if (!params) return base;
         return Object.entries(params).reduce((acc, [paramKey, value]) => {
-          return acc.replace(new RegExp(`\{${paramKey}\}`, 'g'), String(value));
+          return acc.replaceAll(`{${paramKey}}`, String(value));
         }, base);
       },
     }),
