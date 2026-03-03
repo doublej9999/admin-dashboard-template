@@ -24,6 +24,12 @@ export const useThemeSettings = () => {
       root.style.setProperty('--color-brand-600', accent.primaryDark);
       root.style.setProperty('--radius-card', radiusTokens[settings.radius] ?? radiusTokens.soft);
       root.setAttribute('data-density', settings.density);
+
+      if (settings.theme === 'dark') {
+        root.classList.add('dark');
+      } else {
+        root.classList.remove('dark');
+      }
     };
 
     apply();
