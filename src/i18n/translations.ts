@@ -10,6 +10,7 @@ export const translations: Dictionary = {
   'nav.notifications': { en: 'Notifications', zh: '通知' },
   'nav.files': { en: 'Files', zh: '文件' },
   'nav.messages': { en: 'Messages', zh: '消息中心' },
+  'nav.profile': { en: 'Profile', zh: '个人中心' },
   'nav.auditLogs': { en: 'Audit Logs', zh: '审计日志' },
   'nav.settings': { en: 'Settings', zh: '设置' },
   'common.searchPlaceholder': { en: 'Search or type a command', zh: '搜索或输入指令' },
@@ -125,6 +126,19 @@ export const translations: Dictionary = {
   'messages.markRead': { en: 'Mark read', zh: '标记已读' },
   'messages.markUnread': { en: 'Mark unread', zh: '标记未读' },
   'messages.empty': { en: 'No messages found.', zh: '暂无消息。' },
+  'profile.section': { en: 'Profile', zh: '个人' },
+  'profile.title': { en: 'Personal Center', zh: '个人中心' },
+  'profile.statusPlaceholder': { en: 'Set your status', zh: '设置你的状态' },
+  'profile.updateStatus': { en: 'Update', zh: '更新' },
+  'profile.role': { en: 'Operations Manager', zh: '运营经理' },
+  'profile.displayName': { en: 'Display name', zh: '显示名称' },
+  'profile.email': { en: 'Email', zh: '邮箱' },
+  'profile.location': { en: 'Location', zh: '所在地' },
+  'profile.metrics': { en: 'Performance', zh: '工作表现' },
+  'profile.metricProjects': { en: 'Projects', zh: '项目' },
+  'profile.metricTasks': { en: 'Tasks', zh: '任务' },
+  'profile.metricReports': { en: 'Reports', zh: '报告' },
+  'profile.activity': { en: 'Recent activity', zh: '最近活动' },
 };
 
 export const t = (key: keyof typeof translations, locale: Locale) => {

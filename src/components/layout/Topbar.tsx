@@ -103,7 +103,7 @@ const Topbar = ({ onMenuClick, onCommandClick }: TopbarProps) => {
           {showUserMenu && (
             <div className="absolute right-0 mt-2 w-48 rounded-xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 shadow-card p-2 z-20">
               {[
-                { label: 'Profile', icon: User, action: () => navigate('/settings') },
+                { label: 'Profile', icon: User, action: () => navigate('/profile') },
                 { label: 'Settings', icon: Settings, action: () => navigate('/settings') },
                 { label: 'Logout', icon: LogOut, danger: true, action: handleLogout },
               ].map((item) => {
