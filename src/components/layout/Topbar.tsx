@@ -33,14 +33,14 @@ const Topbar = ({ onMenuClick, onCommandClick }: TopbarProps) => {
           className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-base-200 dark:border-base-700"
           aria-label="Open menu"
         >
-          <span className="text-lg">☰</span>
+          <span className="text-lg" aria-hidden="true">☰</span>
         </button>
         <button
           onClick={onCommandClick}
           className="hidden md:flex items-center gap-2 density-pad rounded-xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-800 px-3 py-2 text-sm text-base-400 hover:text-base-600 dark:hover:text-base-200"
           aria-label={t('common.openCommandPalette')}
         >
-          <Search className="h-4 w-4" />
+          <Search className="h-4 w-4" aria-hidden="true" />
           <span className="text-base-500">{t('common.searchPlaceholder')}</span>
           <span className="ml-6 rounded-md border border-base-200 dark:border-base-700 bg-white/70 dark:bg-base-900/70 px-2 py-0.5 text-xs text-base-400">
             ⌘K
@@ -54,7 +54,7 @@ const Topbar = ({ onMenuClick, onCommandClick }: TopbarProps) => {
           className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-xl border border-base-200 dark:border-base-700"
           aria-label={t('common.openCommandPalette')}
         >
-          <Search size={18} />
+          <Search size={18} aria-hidden="true" />
         </button>
         <button
           onClick={() => setLocale(locale === 'zh' ? 'en' : 'zh')}
@@ -68,7 +68,7 @@ const Topbar = ({ onMenuClick, onCommandClick }: TopbarProps) => {
           className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-base-200 dark:border-base-700"
           aria-label={t('common.toggleDark')}
         >
-          {mode === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+          {mode === 'dark' ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />}
         </button>
 
         <div className="relative">
@@ -77,7 +77,7 @@ const Topbar = ({ onMenuClick, onCommandClick }: TopbarProps) => {
             className="relative inline-flex h-10 w-10 items-center justify-center rounded-xl border border-base-200 dark:border-base-700"
             aria-label="Notifications"
           >
-            <Bell size={18} />
+            <Bell size={18} aria-hidden="true" />
             {unreadCount > 0 && (
               <span className="absolute right-2 top-2 density-pad h-2 w-2 rounded-full bg-danger" />
             )}
@@ -92,7 +92,7 @@ const Topbar = ({ onMenuClick, onCommandClick }: TopbarProps) => {
           >
             <img
               src="https://i.pravatar.cc/40?img=3"
-              alt="User"
+              alt="Jordan Lee"
               className="h-8 w-8 rounded-full"
             />
             <div className="hidden md:block text-left">
@@ -101,7 +101,7 @@ const Topbar = ({ onMenuClick, onCommandClick }: TopbarProps) => {
             </div>
           </button>
           {showUserMenu && (
-            <div className="absolute right-0 mt-2 w-48 rounded-xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 shadow-card density-pad p-2 z-20">
+            <div className="absolute right-0 mt-2 w-48 rounded-xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 shadow-card density-pad p-2 z-20" role="menu" aria-label="User menu">
               {[
                 { label: 'Profile', icon: User, action: () => navigate('/profile') },
                 { label: 'Settings', icon: Settings, action: () => navigate('/settings') },
@@ -112,6 +112,7 @@ const Topbar = ({ onMenuClick, onCommandClick }: TopbarProps) => {
                   <button
                     key={item.label}
                     onClick={item.action}
+                    role="menuitem"
                     className={clsx(
                       'flex w-full items-center gap-3 density-pad rounded-lg px-3 py-2 text-sm',
                       item.danger
@@ -119,7 +120,7 @@ const Topbar = ({ onMenuClick, onCommandClick }: TopbarProps) => {
                         : 'text-base-600 hover:bg-base-100 dark:hover:bg-base-700/60'
                     )}
                   >
-                    <Icon size={16} />
+                    <Icon size={16} aria-hidden="true" />
                     {item.label}
                   </button>
                 );

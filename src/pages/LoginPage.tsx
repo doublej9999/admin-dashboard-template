@@ -43,24 +43,28 @@ const LoginPage = () => {
             <p className="text-sm text-base-500">Access your admin workspace</p>
           </div>
 
-          <form className="space-y-5" onSubmit={handleSubmit}>
+          <form className="space-y-5" onSubmit={handleSubmit} aria-label="Login form">
             <div>
-              <label className="text-sm text-base-500">Username</label>
+              <label className="text-sm text-base-500" htmlFor="login-username">Username</label>
               <input
+                id="login-username"
                 className="mt-2 w-full rounded-xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-900 px-4 py-2 text-sm focus:border-brand-500 focus:outline-none"
                 value={username}
                 onChange={(event) => setUsername(event.target.value)}
                 placeholder="admin"
+                autoComplete="username"
               />
             </div>
             <div>
-              <label className="text-sm text-base-500">Password</label>
+              <label className="text-sm text-base-500" htmlFor="login-password">Password</label>
               <input
+                id="login-password"
                 type="password"
                 className="mt-2 w-full rounded-xl border border-base-200 dark:border-base-700 bg-base-50 dark:bg-base-900 px-4 py-2 text-sm focus:border-brand-500 focus:outline-none"
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
                 placeholder="admin123"
+                autoComplete="current-password"
               />
             </div>
 

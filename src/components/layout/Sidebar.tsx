@@ -87,7 +87,7 @@ const Sidebar = ({ collapsed, onCollapse }: SidebarProps) => {
                   )
                 }
               >
-                <Icon size={20} />
+                <Icon size={20} aria-hidden="true" />
                 {!collapsed && <span>{t(item.label as keyof typeof translations)}</span>}
               </NavLink>
             );
