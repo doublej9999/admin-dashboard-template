@@ -9,6 +9,7 @@ const AppLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [commandOpen, setCommandOpen] = useState(false);
+  const [commandSeed, setCommandSeed] = useState(0);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -16,6 +17,7 @@ const AppLayout = () => {
       const hotkey = isMac ? event.metaKey : event.ctrlKey;
       if (hotkey && event.key.toLowerCase() === 'k') {
         event.preventDefault();
+        setCommandSeed(Date.now());
         setCommandOpen(true);
       }
     };
@@ -42,13 +44,19 @@ const AppLayout = () => {
         </div>
 
         <div className="flex-1 flex flex-col min-w-0">
-          <Topbar onMenuClick={() => setMobileOpen(true)} onCommandClick={() => setCommandOpen(true)} />
+          <Topbar
+            onMenuClick={() => setMobileOpen(true)}
+            onCommandClick={() => {
+              setCommandSeed(Date.now());
+              setCommandOpen(true);
+            }}
+          />
           <main className="flex-1 overflow-y-auto px-4 py-6 lg:px-6">
             <Outlet />
           </main>
         </div>
       </div>
-      <CommandPalette open={commandOpen} onClose={() => setCommandOpen(false)} />
+      <CommandPalette key={commandSeed} open={commandOpen} onClose={() => setCommandOpen(false)} />
       <Tour />
     </div>
   );

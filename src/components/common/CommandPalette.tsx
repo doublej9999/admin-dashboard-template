@@ -14,7 +14,7 @@ import {
 import clsx from 'clsx';
 import { useNavigate } from 'react-router-dom';
 import { useDarkMode } from '../../hooks/useDarkMode';
-import { useI18n } from '../../contexts/I18nContext';
+import { useI18n } from '../../contexts/useI18n';
 
 export interface CommandPaletteProps {
   open: boolean;
@@ -30,13 +30,9 @@ const CommandPalette = ({ open, onClose }: CommandPaletteProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    if (open) {
-      setQuery('');
-      setActiveIndex(0);
-      const timer = window.setTimeout(() => inputRef.current?.focus(), 50);
-      return () => window.clearTimeout(timer);
-    }
-    return undefined;
+    if (!open) return undefined;
+    const timer = window.setTimeout(() => inputRef.current?.focus(), 50);
+    return () => window.clearTimeout(timer);
   }, [open]);
 
   useEffect(() => {

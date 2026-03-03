@@ -4,7 +4,7 @@ import type { PermissionKey, RoleRecord } from '../data/roles';
 import { mockRoles } from '../data/roles';
 import { getRoles, setCurrentRole, setRoles as persistRoles } from '../utils/rbac';
 import { usePermissions } from '../hooks/usePermissions';
-import { useI18n } from '../contexts/I18nContext';
+import { useI18n } from '../contexts/useI18n';
 
 const RolesPage = () => {
   const [roles, setRoles] = useState<RoleRecord[]>(getRoles() ?? mockRoles);
