@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import clsx from 'clsx';
 import { mockAuditLogs } from '../data/auditLogs';
 import { usePagination } from '../hooks/usePagination';
-import { useI18n } from '../contexts/I18nContext';
+import { useI18n } from '../contexts/useI18n';
 
 const AuditLogsPage = () => {
   const [user, setUser] = useState('');

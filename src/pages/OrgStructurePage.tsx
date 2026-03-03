@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import clsx from 'clsx';
-import { useI18n } from '../contexts/I18nContext';
+import { useI18n } from '../contexts/useI18n';
 
 interface Member {
   id: string;
