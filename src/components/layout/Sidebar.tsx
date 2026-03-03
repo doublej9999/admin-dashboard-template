@@ -1,13 +1,28 @@
 import { NavLink } from 'react-router-dom';
-import { FolderOpen, LayoutGrid, LineChart, Settings, Users } from 'lucide-react';
+import {
+  Bell,
+  ClipboardList,
+  FolderOpen,
+  LayoutGrid,
+  LineChart,
+  Settings,
+  Shield,
+  Users,
+} from 'lucide-react';
 import clsx from 'clsx';
+import { hasPermission } from '../../utils/rbac';
+import { menuPermissionMap, type MenuKey } from '../../utils/permissions';
+import { useRole } from '../../hooks/useRole';
 
-const navItems = [
-  { label: 'Dashboard', to: '/dashboard', icon: LayoutGrid },
-  { label: 'Analytics', to: '/analytics', icon: LineChart },
-  { label: 'Users', to: '/users', icon: Users },
-  { label: 'Files', to: '/files', icon: FolderOpen },
-  { label: 'Settings', to: '/settings', icon: Settings },
+const navItems: Array<{ label: string; to: string; icon: typeof LayoutGrid; key: MenuKey }> = [
+  { label: 'Dashboard', to: '/dashboard', icon: LayoutGrid, key: 'dashboard' },
+  { label: 'Analytics', to: '/analytics', icon: LineChart, key: 'analytics' },
+  { label: 'Users', to: '/users', icon: Users, key: 'users' },
+  { label: 'Roles', to: '/roles', icon: Shield, key: 'roles' },
+  { label: 'Notifications', to: '/notifications', icon: Bell, key: 'notifications' },
+  { label: 'Files', to: '/files', icon: FolderOpen, key: 'files' },
+  { label: 'Audit Logs', to: '/audit-logs', icon: ClipboardList, key: 'audit-logs' },
+  { label: 'Settings', to: '/settings', icon: Settings, key: 'settings' },
 ];
 
 interface SidebarProps {
@@ -16,6 +31,7 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ collapsed, onCollapse }: SidebarProps) => {
+  useRole();
   return (
     <aside
       className={clsx(
@@ -45,26 +61,28 @@ const Sidebar = ({ collapsed, onCollapse }: SidebarProps) => {
       </div>
 
       <nav className="flex-1 px-3 space-y-2">
-        {navItems.map((item) => {
-          const Icon = item.icon;
-          return (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              className={({ isActive }) =>
-                clsx(
-                  'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors',
-                  isActive
-                    ? 'bg-brand-500/10 text-brand-600 dark:text-brand-300'
-                    : 'text-base-500 hover:bg-base-100 dark:hover:bg-base-700/60'
-                )
-              }
-            >
-              <Icon size={20} />
-              {!collapsed && <span>{item.label}</span>}
-            </NavLink>
-          );
-        })}
+        {navItems
+          .filter((item) => hasPermission(menuPermissionMap[item.key]))
+          .map((item) => {
+            const Icon = item.icon;
+            return (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                className={({ isActive }) =>
+                  clsx(
+                    'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors',
+                    isActive
+                      ? 'bg-brand-500/10 text-brand-600 dark:text-brand-300'
+                      : 'text-base-500 hover:bg-base-100 dark:hover:bg-base-700/60'
+                  )
+                }
+              >
+                <Icon size={20} />
+                {!collapsed && <span>{item.label}</span>}
+              </NavLink>
+            );
+          })}
       </nav>
 
       <div className="px-4 py-4">
