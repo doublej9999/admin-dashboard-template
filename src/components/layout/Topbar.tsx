@@ -5,7 +5,7 @@ import { useDarkMode } from '../../hooks/useDarkMode';
 import { useNotifications } from '../../hooks/useNotifications';
 import { logout } from '../../utils/auth';
 import clsx from 'clsx';
-import { useI18n } from '../../contexts/I18nContext';
+import { useI18n } from '../../contexts/useI18n';
 
 interface TopbarProps {
   onMenuClick: () => void;
