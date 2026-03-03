@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import CommandPalette from '../common/CommandPalette';
+import Tour from '../common/Tour';
 
 const AppLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -48,6 +49,7 @@ const AppLayout = () => {
         </div>
       </div>
       <CommandPalette open={commandOpen} onClose={() => setCommandOpen(false)} />
+      <Tour />
     </div>
   );
 };
