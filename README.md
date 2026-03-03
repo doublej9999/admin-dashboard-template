@@ -69,6 +69,7 @@ npm run preview
 
 - Login page + auth guard (mock login, localStorage token, logout)
 - System settings page (theme toggle, language placeholder, profile settings)
+- User management CRUD (search, add/edit modal, delete confirm, pagination)
 
 ## 📸 截图
 
