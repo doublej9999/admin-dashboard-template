@@ -12,6 +12,7 @@ export const translations: Dictionary = {
   'nav.messages': { en: 'Messages', zh: '消息中心' },
   'nav.profile': { en: 'Profile', zh: '个人中心' },
   'nav.org': { en: 'Organization', zh: '组织架构' },
+  'nav.version': { en: 'Version', zh: '版本日志' },
   'nav.auditLogs': { en: 'Audit Logs', zh: '审计日志' },
   'nav.settings': { en: 'Settings', zh: '设置' },
   'common.searchPlaceholder': { en: 'Search or type a command', zh: '搜索或输入指令' },
@@ -186,6 +187,15 @@ export const translations: Dictionary = {
   'tour.next': { en: 'Next', zh: '下一步' },
   'tour.finish': { en: 'Finish', zh: '完成' },
   'tour.stepCount': { en: 'Step {current} / {total}', zh: '步骤 {current}/{total}' },
+  'version.section': { en: 'Release', zh: '版本' },
+  'version.title': { en: 'Version & Changelog', zh: '版本与更新日志' },
+  'version.current': { en: 'Current version', zh: '当前版本' },
+  'version.updated': { en: 'Updated on', zh: '更新于' },
+  'version.statFeatures': { en: '12 new features shipped', zh: '新增 12 项功能' },
+  'version.statFixes': { en: '8 bug fixes', zh: '修复 8 个问题' },
+  'version.statPerf': { en: '3 performance upgrades', zh: '3 项性能优化' },
+  'version.changelog': { en: 'Changelog', zh: '更新日志' },
+  'version.release': { en: 'Release', zh: '版本发布' },
 };
 
 export const t = (key: keyof typeof translations, locale: Locale) => {
