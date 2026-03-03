@@ -4,6 +4,7 @@ import RequireAuth from './components/auth/RequireAuth';
 import DashboardPage from './pages/DashboardPage';
 import LoginPage from './pages/LoginPage';
 import PlaceholderPage from './pages/PlaceholderPage';
+import RolesPage from './pages/RolesPage';
 import SettingsPage from './pages/SettingsPage';
 import UsersPage from './pages/UsersPage';
 import { isAuthed } from './utils/auth';
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/analytics" element={<PlaceholderPage title="Analytics" />} />
         <Route path="/users" element={<UsersPage />} />
+        <Route path="/roles" element={<RolesPage />} />
         <Route path="/settings" element={<SettingsPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
