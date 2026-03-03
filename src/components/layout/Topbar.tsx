@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDarkMode } from '../../hooks/useDarkMode';
 import { useNotifications } from '../../hooks/useNotifications';
+import { logout } from '../../utils/auth';
 import clsx from 'clsx';
 
 interface TopbarProps {
@@ -15,6 +16,11 @@ const Topbar = ({ onMenuClick }: TopbarProps) => {
   const notifications = useNotifications();
   const unreadCount = notifications.filter((item) => !item.read).length;
   const [showUserMenu, setShowUserMenu] = useState(false);
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
 
   return (
     <header className="flex items-center justify-between gap-4 border-b border-base-200 dark:border-base-700 bg-white/80 dark:bg-base-900/80 backdrop-blur px-4 py-3 lg:px-6">
@@ -76,14 +82,15 @@ const Topbar = ({ onMenuClick }: TopbarProps) => {
           {showUserMenu && (
             <div className="absolute right-0 mt-2 w-48 rounded-xl border border-base-200 dark:border-base-700 bg-white dark:bg-base-800 shadow-card p-2 z-20">
               {[
-                { label: 'Profile', icon: User },
-                { label: 'Settings', icon: Settings },
-                { label: 'Logout', icon: LogOut, danger: true },
+                { label: 'Profile', icon: User, action: () => navigate('/settings') },
+                { label: 'Settings', icon: Settings, action: () => navigate('/settings') },
+                { label: 'Logout', icon: LogOut, danger: true, action: handleLogout },
               ].map((item) => {
                 const Icon = item.icon;
                 return (
                   <button
                     key={item.label}
+                    onClick={item.action}
                     className={clsx(
                       'flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm',
                       item.danger
