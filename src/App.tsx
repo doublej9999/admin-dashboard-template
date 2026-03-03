@@ -14,6 +14,7 @@ import KanbanPage from './pages/KanbanPage';
 import MessageCenterPage from './pages/MessageCenterPage';
 import ProfilePage from './pages/ProfilePage';
 import OrgStructurePage from './pages/OrgStructurePage';
+import VersionPage from './pages/VersionPage';
 import { isAuthed } from './utils/auth';
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
         <Route path="/messages" element={<MessageCenterPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/org" element={<OrgStructurePage />} />
+        <Route path="/version" element={<VersionPage />} />
         <Route path="/files" element={<FilesPage />} />
         <Route path="/audit-logs" element={<AuditLogsPage />} />
         <Route path="/kanban" element={<KanbanPage />} />
