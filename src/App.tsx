@@ -10,6 +10,7 @@ import PlaceholderPage from './pages/PlaceholderPage';
 import RolesPage from './pages/RolesPage';
 import SettingsPage from './pages/SettingsPage';
 import UsersPage from './pages/UsersPage';
+import KanbanPage from './pages/KanbanPage';
 import { isAuthed } from './utils/auth';
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/notifications" element={<NotificationsPage />} />
         <Route path="/files" element={<FilesPage />} />
         <Route path="/audit-logs" element={<AuditLogsPage />} />
+        <Route path="/kanban" element={<KanbanPage />} />
         <Route path="/settings" element={<SettingsPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/dashboard" replace />} />

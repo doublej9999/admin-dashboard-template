@@ -102,6 +102,17 @@ export const translations: Dictionary = {
   'reports.last12Months': { en: 'Last 12 Months', zh: '近 12 个月' },
   'reports.range6': { en: 'Last 6 months', zh: '近 6 个月' },
   'reports.range12': { en: 'Last 12 months', zh: '近 12 个月' },
+  'nav.kanban': { en: 'Kanban', zh: '看板' },
+  'kanban.section': { en: 'Workflow', zh: '工作流' },
+  'kanban.title': { en: 'Task Board', zh: '任务看板' },
+  'kanban.summaryTotal': { en: 'Total tasks: {count}', zh: '任务总数：{count}' },
+  'kanban.summaryProgress': { en: 'In progress: {count}', zh: '进行中：{count}' },
+  'kanban.summaryReview': { en: 'In review: {count}', zh: '评审中：{count}' },
+  'kanban.column.backlog': { en: 'Backlog', zh: '待办' },
+  'kanban.column.in-progress': { en: 'In Progress', zh: '进行中' },
+  'kanban.column.review': { en: 'Review', zh: '评审' },
+  'kanban.column.done': { en: 'Done', zh: '已完成' },
+  'kanban.dragHint': { en: 'Drag to move', zh: '拖拽移动' },
 };
 
 export const t = (key: keyof typeof translations, locale: Locale) => {
