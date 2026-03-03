@@ -3,6 +3,7 @@ import AppLayout from './components/layout/AppLayout';
 import RequireAuth from './components/auth/RequireAuth';
 import DashboardPage from './pages/DashboardPage';
 import LoginPage from './pages/LoginPage';
+import NotificationsPage from './pages/NotificationsPage';
 import PlaceholderPage from './pages/PlaceholderPage';
 import RolesPage from './pages/RolesPage';
 import SettingsPage from './pages/SettingsPage';
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/analytics" element={<PlaceholderPage title="Analytics" />} />
         <Route path="/users" element={<UsersPage />} />
         <Route path="/roles" element={<RolesPage />} />
+        <Route path="/notifications" element={<NotificationsPage />} />
         <Route path="/settings" element={<SettingsPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/dashboard" replace />} />

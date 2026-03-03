@@ -71,6 +71,7 @@ npm run preview
 - System settings page (theme toggle, language placeholder, profile settings)
 - User management CRUD (search, add/edit modal, delete confirm, pagination)
 - Roles & permissions (RBAC) with menu filtering and permission preview
+- Notifications center page with filters and read status
 
 ## 📸 截图
 
